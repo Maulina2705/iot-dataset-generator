@@ -53,3 +53,7 @@ pre {
   max-height: 300px;
   overflow: auto;
 }
+
+#status {
+  font-weight: bold;
+}

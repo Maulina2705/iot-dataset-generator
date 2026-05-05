@@ -4,6 +4,7 @@
   <title>IoT Dataset Generator</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -11,6 +12,7 @@
   <h1>🚀 IoT Dataset Generator Dashboard</h1>
 
   <h3>⚙️ Controls</h3>
+  
   <div class="panel">
     <label>Data Points: <span id="dataCountLabel">100</span></label><br>
     <input type="range" id="dataCount" min="50" max="500" value="100">
@@ -33,6 +35,26 @@
       <input type="checkbox" id="showAnomaly" checked>
       Show Detected Anomaly
     </label>
+  </div>
+
+  <!-- 🔥 STREAMING UX PANEL -->
+  <div class="panel">
+    <h4>📡 Streaming Status</h4>
+
+    <p>Status: 
+      <span id="status" style="color:red;">Stopped</span>
+    </p>
+
+    <p>Data Count: 
+      <span id="liveCount">0</span>
+    </p>
+
+    <label>Speed:</label><br>
+    <select id="intervalSelect">
+      <option value="1000">1 sec</option>
+      <option value="500">0.5 sec (fast)</option>
+      <option value="2000">2 sec</option>
+    </select>
   </div>
 
   <div class="controls">
@@ -63,6 +85,5 @@
   <h3>📦 Output (last 20 rows)</h3>
   <pre id="output"></pre>
 
-  <script src="script.js" defer></script>
 </body>
 </html>
