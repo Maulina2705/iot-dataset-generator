@@ -204,6 +204,8 @@ function downloadCSV() {
 // UI
 // =======================
 
-document.getElementById("dataCount").addEventListener("input", function() {
-  document.getElementById("dataCountLabel").textContent = this.value;
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("dataCount").addEventListener("input", function() {
+    document.getElementById("dataCountLabel").textContent = this.value;
+  });
 });
