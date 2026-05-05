@@ -20,79 +20,56 @@
     <br><br>
 
     <label>Number of Devices:</label><br>
-    <input type="number" id="deviceCount" value="3" min="1" max="10">
+    <input type="number" id="deviceCount" value="3">
 
     <br><br>
 
-    <label>
-      <input type="checkbox" id="anomalyToggle" checked>
-      Enable Anomaly Injection
-    </label>
-
-    <br>
-
-    <label>
-      <input type="checkbox" id="showAnomaly" checked>
-      Show Detected Anomaly
-    </label>
+    <label><input type="checkbox" id="anomalyToggle" checked> Enable Anomaly</label><br>
+    <label><input type="checkbox" id="showAnomaly" checked> Show Anomaly</label>
   </div>
 
-  <!-- 🔥 STREAMING UX PANEL -->
   <div class="panel">
-    <h4>📡 Streaming Status</h4>
+    <h4>📡 Streaming</h4>
+    <p>Status: <span id="status" style="color:red;">Stopped</span></p>
+    <p>Data Count: <span id="liveCount">0</span></p>
 
-    <p>Status: 
-      <span id="status" style="color:red;">Stopped</span>
-    </p>
+    <label>Speed:</label><br>
+    <select id="intervalSelect">
+      <option value="500">Fast</option>
+      <option value="1000" selected>Normal</option>
+      <option value="2000">Slow</option>
+    </select>
 
-    <p>Data Count: 
-      <span id="liveCount">0</span>
-    </p>
+    <br><br>
 
-<label>Simulation Step:</label><br>
-<select id="timeStep">
-  <option value="1">1 minute / data</option>
-  <option value="5">5 minutes / data</option>
-  <option value="10">10 minutes / data</option>
-  <option value="60">1 hour / data</option>
-</select>
-
-<br><br>
-
-<label>Speed:</label><br>
-<select id="intervalSelect">
-  <option value="1000">1 sec</option>
-  <option value="500">0.5 sec (fast)</option>
-  <option value="2000">2 sec</option>
-</select>
+    <label>Resolution:</label><br>
+    <label><input type="radio" name="resolution" value="second" checked> Detik</label>
+    <label><input type="radio" name="resolution" value="minute"> Menit</label>
+    <label><input type="radio" name="resolution" value="hour"> Jam</label>
   </div>
 
   <div class="controls">
     <button onclick="generateData()">Generate Data</button>
-    <button onclick="startStreaming()">▶ Start Streaming</button>
+    <button onclick="startStreaming()">▶ Start</button>
     <button onclick="stopStreaming()">⏹ Stop</button>
     <button onclick="downloadCSV()">Download CSV</button>
-    <button onclick="downloadJSON()">Download JSON</button>
   </div>
 
   <div class="grid">
     <div class="card">
-      <h3>🌡 Temperature</h3>
+      <h3>Temperature</h3>
       <canvas id="tempChart"></canvas>
     </div>
-
     <div class="card">
-      <h3>💧 Humidity</h3>
+      <h3>Humidity</h3>
       <canvas id="humChart"></canvas>
     </div>
-
     <div class="card">
-      <h3>🚶 Motion</h3>
+      <h3>Motion</h3>
       <canvas id="motionChart"></canvas>
     </div>
   </div>
 
-  <h3>📦 Output (last 20 rows)</h3>
   <pre id="output"></pre>
 
 </body>
