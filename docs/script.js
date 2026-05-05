@@ -172,7 +172,10 @@ function startStreaming() {
 
     nextWeather();
 
-    let simulatedTime = new Date(startTime.getTime() + currentIndex * 60000);
+    let stepMinutes = parseInt(document.getElementById("timeStep").value || 1);
+    let simulatedTime = new Date(
+        startTime.getTime() + currentIndex * stepMinutes * 60000
+      );
     let hour = simulatedTime.getHours();
 
     let temp = generateTemperature(currentIndex);
