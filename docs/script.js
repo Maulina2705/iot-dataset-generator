@@ -22,6 +22,7 @@ function generateTemperature(i, anomalyEnabled) {
   let noise = (Math.random() - 0.5);
   let value = base + noise;
 
+  // injected anomaly (simulasi dunia nyata)
   if (anomalyEnabled && Math.random() < 0.02) {
     value += Math.random() * 20;
   }
@@ -46,6 +47,30 @@ function generateMotion() {
 }
 
 // =======================
+// ANOMALY DETECTION (Z-SCORE)
+// =======================
+
+function detectAnomalies(data, threshold = 2.8) {
+  const temps = data.map(d => d.temperature);
+
+  const mean = temps.reduce((a, b) => a + b, 0) / temps.length;
+
+  const variance = temps.reduce((sum, val) => {
+    return sum + Math.pow(val - mean, 2);
+  }, 0) / temps.length;
+
+  const std = Math.sqrt(variance);
+
+  return data.map(d => {
+    const z = (d.temperature - mean) / std;
+    return {
+      ...d,
+      is_anomaly: Math.abs(z) > threshold
+    };
+  });
+}
+
+// =======================
 // MAIN GENERATOR
 // =======================
 
@@ -62,6 +87,9 @@ function generateData() {
       motion: generateMotion()
     });
   }
+
+  // tambahkan hasil deteksi anomaly
+  data = detectAnomalies(data);
 
   generatedData = data;
 
@@ -91,10 +119,10 @@ function downloadJSON() {
 function downloadCSV() {
   if (generatedData.length === 0) return alert("Generate data first!");
 
-  let csv = "device_id,timestamp,temperature,humidity,motion\n";
+  let csv = "device_id,timestamp,temperature,humidity,motion,is_anomaly\n";
 
   generatedData.forEach(row => {
-    csv += `${row.device_id},${row.timestamp},${row.temperature},${row.humidity},${row.motion}\n`;
+    csv += `${row.device_id},${row.timestamp},${row.temperature},${row.humidity},${row.motion},${row.is_anomaly}\n`;
   });
 
   let blob = new Blob([csv], { type: "text/csv" });
@@ -106,12 +134,14 @@ function downloadCSV() {
 }
 
 // =======================
-// CHART
+// CHART WITH ANOMALY
 // =======================
 
 function drawChart(data) {
-  let labels = data.map((_, i) => i);
-  let temps = data.map(d => d.temperature);
+  const labels = data.map((_, i) => i);
+
+  const normalData = data.map(d => d.is_anomaly ? null : d.temperature);
+  const anomalyData = data.map(d => d.is_anomaly ? d.temperature : null);
 
   const ctx = document.getElementById("chart").getContext("2d");
 
@@ -121,11 +151,19 @@ function drawChart(data) {
     type: "line",
     data: {
       labels: labels,
-      datasets: [{
-        label: "Temperature (°C)",
-        data: temps,
-        borderWidth: 2
-      }]
+      datasets: [
+        {
+          label: "Temperature",
+          data: normalData,
+          borderWidth: 2
+        },
+        {
+          label: "Anomaly",
+          data: anomalyData,
+          pointRadius: 6,
+          showLine: false
+        }
+      ]
     },
     options: {
       responsive: true,
