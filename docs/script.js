@@ -3,6 +3,7 @@ let charts = {};
 let streamInterval = null;
 let currentIndex = 0;
 let maxDataPoints = 300;
+let startTime = null;
 
 // =======================
 // CONFIG
@@ -52,35 +53,29 @@ function getActivity(hour) {
 }
 
 // =======================
-// TEMPERATURE MODEL
+// TEMPERATURE
 // =======================
 
 function generateTemperature(minuteIndex) {
   let hour = (minuteIndex / 60) % 24;
 
-  // daily pattern
   let base = 27 + 3 * Math.sin((2 * Math.PI * hour) / 24);
 
-  // weather effect
   let weatherEffect = 0;
   if (weatherState === "clear") weatherEffect = 2;
   if (weatherState === "cloudy") weatherEffect = 0;
   if (weatherState === "rain") weatherEffect = -3;
 
-  // activity effect
-  let activity = getActivity(hour);
-  let activityEffect = activity * 2;
+  let activityEffect = getActivity(hour) * 2;
 
   let temp = base + weatherEffect + activityEffect;
-
-  // noise
   temp += (Math.random() - 0.5);
 
-  return Math.min(Math.max(temp, 22), 36).toFixed(2);
+  return Math.min(Math.max(temp, 22), 36);
 }
 
 // =======================
-// HUMIDITY MODEL
+// HUMIDITY
 // =======================
 
 function generateHumidity(temp) {
@@ -91,7 +86,7 @@ function generateHumidity(temp) {
 
   humidity += (Math.random() * 4 - 2);
 
-  return Math.min(Math.max(humidity, 60), 95).toFixed(2);
+  return Math.min(Math.max(humidity, 60), 95);
 }
 
 // =======================
@@ -99,8 +94,7 @@ function generateHumidity(temp) {
 // =======================
 
 function generateMotion(hour) {
-  let activity = getActivity(hour);
-  return Math.random() < activity ? 1 : 0;
+  return Math.random() < getActivity(hour) ? 1 : 0;
 }
 
 // =======================
@@ -108,7 +102,9 @@ function generateMotion(hour) {
 // =======================
 
 function detectAnomalies(data) {
-  let temps = data.map(d => parseFloat(d.temperature));
+  if (data.length < 5) return data.map(d => ({ ...d, is_anomaly: false }));
+
+  let temps = data.map(d => d.temperature);
   let mean = temps.reduce((a,b)=>a+b,0)/temps.length;
 
   let std = Math.sqrt(
@@ -122,10 +118,45 @@ function detectAnomalies(data) {
 }
 
 // =======================
-// STREAMING
+// GENERATE STATIC DATA
 // =======================
 
-let startTime = null;
+function generateData() {
+  stopStreaming();
+
+  let config = getConfig();
+  generatedData = [];
+  currentIndex = 0;
+  startTime = new Date();
+
+  for (let i = 0; i < 100; i++) {
+    nextWeather();
+
+    let simulatedTime = new Date(startTime.getTime() + i * 60000);
+    let hour = simulatedTime.getHours();
+
+    let temp = generateTemperature(i);
+    let hum = generateHumidity(temp);
+
+    generatedData.push({
+      device_id: "room_1",
+      timestamp: simulatedTime.toISOString(),
+      weather: weatherState,
+      temperature: temp,
+      humidity: hum,
+      motion: generateMotion(hour)
+    });
+  }
+
+  let updated = detectAnomalies(generatedData);
+
+  drawCharts(updated, config.showAnomaly);
+  updateOutput(updated);
+}
+
+// =======================
+// STREAMING
+// =======================
 
 function startStreaming() {
   if (streamInterval) return;
@@ -144,19 +175,17 @@ function startStreaming() {
     let simulatedTime = new Date(startTime.getTime() + currentIndex * 60000);
     let hour = simulatedTime.getHours();
 
-    let temp = parseFloat(generateTemperature(currentIndex));
-    let hum = parseFloat(generateHumidity(temp));
+    let temp = generateTemperature(currentIndex);
+    let hum = generateHumidity(temp);
 
-    let point = {
+    generatedData.push({
       device_id: "room_1",
       timestamp: simulatedTime.toISOString(),
       weather: weatherState,
       temperature: temp,
       humidity: hum,
       motion: generateMotion(hour)
-    };
-
-    generatedData.push(point);
+    });
 
     if (generatedData.length > maxDataPoints) {
       generatedData.shift();
@@ -235,3 +264,43 @@ function updateOutput(data) {
   document.getElementById("output").textContent =
     JSON.stringify(data.slice(-20), null, 2);
 }
+
+// =======================
+// DOWNLOAD
+// =======================
+
+function downloadJSON() {
+  if (generatedData.length === 0) return alert("Generate data first!");
+
+  let blob = new Blob([JSON.stringify(generatedData, null, 2)]);
+  let link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "data.json";
+  link.click();
+}
+
+function downloadCSV() {
+  if (generatedData.length === 0) return alert("Generate data first!");
+
+  let csv = "timestamp,weather,temperature,humidity,motion\n";
+
+  generatedData.forEach(r => {
+    csv += `${r.timestamp},${r.weather},${r.temperature},${r.humidity},${r.motion}\n`;
+  });
+
+  let blob = new Blob([csv]);
+  let link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "data.csv";
+  link.click();
+}
+
+// =======================
+// UI INIT
+// =======================
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("dataCount").addEventListener("input", function() {
+    document.getElementById("dataCountLabel").textContent = this.value;
+  });
+});
