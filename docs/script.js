@@ -14,7 +14,7 @@ function getConfig() {
     deviceCount: parseInt(document.getElementById("deviceCount").value),
     anomalyEnabled: document.getElementById("anomalyToggle").checked,
     showAnomaly: document.getElementById("showAnomaly").checked,
-    intervalMs: parseInt(document.getElementById("intervalSelect")?.value || 1000)
+    intervalMs: parseInt(document.getElementById("intervalSelect").value)
   };
 }
 
