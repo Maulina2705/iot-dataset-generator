@@ -8,6 +8,14 @@ h1 {
   color: #333;
 }
 
+.panel {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
 .controls {
   margin-bottom: 15px;
 }
