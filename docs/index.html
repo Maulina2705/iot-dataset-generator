@@ -37,6 +37,8 @@
 
   <div class="controls">
     <button onclick="generateData()">Generate Data</button>
+    <button onclick="startStreaming()">▶ Start Streaming</button>
+    <button onclick="stopStreaming()">⏹ Stop</button>
     <button onclick="downloadCSV()">Download CSV</button>
     <button onclick="downloadJSON()">Download JSON</button>
   </div>
@@ -58,7 +60,7 @@
     </div>
   </div>
 
-  <h3>📦 Output</h3>
+  <h3>📦 Output (last 20 rows)</h3>
   <pre id="output"></pre>
 
   <script src="script.js"></script>

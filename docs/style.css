@@ -23,10 +23,15 @@ button {
   color: white;
   border-radius: 5px;
   cursor: pointer;
+  transition: 0.2s;
 }
 
 button:hover {
   background: #0056b3;
+}
+
+button:active {
+  transform: scale(0.95);
 }
 
 .grid {

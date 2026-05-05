@@ -1,5 +1,7 @@
 let generatedData = [];
 let charts = {};
+let streamInterval = null;
+let currentIndex = 0;
 
 // =======================
 // CONFIG
@@ -63,10 +65,12 @@ function detectAnomalies(data) {
 }
 
 // =======================
-// MAIN
+// GENERATE (STATIC)
 // =======================
 
 function generateData() {
+  stopStreaming();
+
   let config = getConfig();
   let data = [];
 
@@ -83,22 +87,57 @@ function generateData() {
   data = detectAnomalies(data);
   generatedData = data;
 
-  document.getElementById("output").textContent =
-    JSON.stringify(data, null, 2);
-
   drawCharts(data, config.showAnomaly);
+  updateOutput(data);
 }
 
 // =======================
-// CHART BUILDER
+// STREAMING MODE
 // =======================
 
-function buildChart(canvasId, label, values, anomalies, showAnomaly) {
-  const ctx = document.getElementById(canvasId).getContext("2d");
+function startStreaming() {
+  if (streamInterval) return;
 
-  if (charts[canvasId]) charts[canvasId].destroy();
+  let config = getConfig();
+  generatedData = [];
+  currentIndex = 0;
 
-  charts[canvasId] = new Chart(ctx, {
+  streamInterval = setInterval(() => {
+    let point = {
+      device_id: "esp32_" + Math.floor(Math.random() * config.deviceCount + 1),
+      timestamp: new Date().toISOString(),
+      temperature: generateTemperature(currentIndex, config.anomalyEnabled),
+      humidity: generateHumidity(currentIndex, config.anomalyEnabled),
+      motion: generateMotion()
+    };
+
+    generatedData.push(point);
+
+    let updated = detectAnomalies(generatedData);
+
+    drawCharts(updated, config.showAnomaly);
+    updateOutput(updated);
+
+    currentIndex++;
+
+  }, 1000);
+}
+
+function stopStreaming() {
+  clearInterval(streamInterval);
+  streamInterval = null;
+}
+
+// =======================
+// CHART
+// =======================
+
+function buildChart(id, label, values, anomalies, showAnomaly) {
+  const ctx = document.getElementById(id).getContext("2d");
+
+  if (charts[id]) charts[id].destroy();
+
+  charts[id] = new Chart(ctx, {
     type: "line",
     data: {
       labels: values.map((_,i)=>i),
@@ -119,36 +158,21 @@ function buildChart(canvasId, label, values, anomalies, showAnomaly) {
   });
 }
 
-// =======================
-// DRAW ALL
-// =======================
-
 function drawCharts(data, showAnomaly) {
   let anomalies = data.map(d => d.is_anomaly);
 
-  buildChart(
-    "tempChart",
-    "Temperature",
-    data.map(d=>d.temperature),
-    anomalies,
-    showAnomaly
-  );
+  buildChart("tempChart", "Temperature", data.map(d=>d.temperature), anomalies, showAnomaly);
+  buildChart("humChart", "Humidity", data.map(d=>d.humidity), anomalies, showAnomaly);
+  buildChart("motionChart", "Motion", data.map(d=>d.motion), anomalies, showAnomaly);
+}
 
-  buildChart(
-    "humChart",
-    "Humidity",
-    data.map(d=>d.humidity),
-    anomalies,
-    showAnomaly
-  );
+// =======================
+// OUTPUT
+// =======================
 
-  buildChart(
-    "motionChart",
-    "Motion",
-    data.map(d=>d.motion),
-    anomalies,
-    showAnomaly
-  );
+function updateOutput(data) {
+  document.getElementById("output").textContent =
+    JSON.stringify(data.slice(-20), null, 2);
 }
 
 // =======================
