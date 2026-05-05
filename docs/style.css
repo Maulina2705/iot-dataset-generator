@@ -1,16 +1,36 @@
 body {
   font-family: Arial;
   padding: 20px;
+  background: #f9fafb;
+}
+
+h1 {
+  color: #333;
+}
+
+.controls {
+  margin-bottom: 15px;
 }
 
 button {
-  padding: 10px 20px;
-  font-size: 16px;
+  margin: 5px;
+  padding: 10px 15px;
+  border: none;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background: #0056b3;
 }
 
 pre {
-  background: #f4f4f4;
+  background: #1e1e1e;
+  color: #00ffcc;
   padding: 10px;
   max-height: 300px;
   overflow: auto;
+  border-radius: 5px;
 }
