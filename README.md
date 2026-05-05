@@ -6,7 +6,7 @@ A synthetic data generator for IoT sensor simulation (temperature, humidity, mot
 
 ## 🌐 Live Demo
 
-👉 https://username.github.io/iot-dataset-generator/
+👉 https://maulina2705.github.io/iot-dataset-generator/
 
 ---
 
