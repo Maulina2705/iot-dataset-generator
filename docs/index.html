@@ -8,8 +8,7 @@
 
 <body>
 
-  <h1>🚀 IoT Dataset Generator</h1>
-  <p>Generate realistic IoT sensor data (temperature, humidity, motion)</p>
+  <h1>🚀 IoT Dataset Generator Dashboard</h1>
 
   <h3>⚙️ Controls</h3>
   <div class="panel">
@@ -25,7 +24,14 @@
 
     <label>
       <input type="checkbox" id="anomalyToggle" checked>
-      Enable Anomaly
+      Enable Anomaly Injection
+    </label>
+
+    <br>
+
+    <label>
+      <input type="checkbox" id="showAnomaly" checked>
+      Show Detected Anomaly
     </label>
   </div>
 
@@ -35,8 +41,22 @@
     <button onclick="downloadJSON()">Download JSON</button>
   </div>
 
-  <h3>📊 Temperature Chart</h3>
-  <canvas id="chart"></canvas>
+  <div class="grid">
+    <div class="card">
+      <h3>🌡 Temperature</h3>
+      <canvas id="tempChart"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>💧 Humidity</h3>
+      <canvas id="humChart"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>🚶 Motion</h3>
+      <canvas id="motionChart"></canvas>
+    </div>
+  </div>
 
   <h3>📦 Output</h3>
   <pre id="output"></pre>

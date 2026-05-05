@@ -1,11 +1,7 @@
 body {
   font-family: Arial;
   padding: 20px;
-  background: #f9fafb;
-}
-
-h1 {
-  color: #333;
+  background: #f4f6f9;
 }
 
 .panel {
@@ -13,7 +9,6 @@ h1 {
   padding: 15px;
   border-radius: 8px;
   margin-bottom: 15px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .controls {
@@ -22,23 +17,34 @@ h1 {
 
 button {
   margin: 5px;
-  padding: 10px 15px;
+  padding: 10px;
   border: none;
   background: #007bff;
   color: white;
-  cursor: pointer;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 button:hover {
   background: #0056b3;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+  gap: 15px;
+}
+
+.card {
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+}
+
 pre {
-  background: #1e1e1e;
-  color: #00ffcc;
+  background: #111;
+  color: #0f0;
   padding: 10px;
   max-height: 300px;
   overflow: auto;
-  border-radius: 5px;
 }

@@ -1,28 +1,27 @@
 let generatedData = [];
-let chart;
+let charts = {};
 
 // =======================
-// CONFIG FROM UI
+// CONFIG
 // =======================
 
 function getConfig() {
   return {
     dataCount: parseInt(document.getElementById("dataCount").value),
     deviceCount: parseInt(document.getElementById("deviceCount").value),
-    anomalyEnabled: document.getElementById("anomalyToggle").checked
+    anomalyEnabled: document.getElementById("anomalyToggle").checked,
+    showAnomaly: document.getElementById("showAnomaly").checked
   };
 }
 
 // =======================
-// SENSOR GENERATORS
+// SENSOR
 // =======================
 
 function generateTemperature(i, anomalyEnabled) {
   let base = 25 + 5 * Math.sin(2 * Math.PI * i / 24);
-  let noise = (Math.random() - 0.5);
-  let value = base + noise;
+  let value = base + (Math.random() - 0.5);
 
-  // injected anomaly (simulasi dunia nyata)
   if (anomalyEnabled && Math.random() < 0.02) {
     value += Math.random() * 20;
   }
@@ -32,8 +31,7 @@ function generateTemperature(i, anomalyEnabled) {
 
 function generateHumidity(i, anomalyEnabled) {
   let base = 70 - 10 * Math.sin(2 * Math.PI * i / 24);
-  let noise = (Math.random() * 4 - 2);
-  let value = base + noise;
+  let value = base + (Math.random() * 4 - 2);
 
   if (anomalyEnabled && Math.random() < 0.02) {
     value += (Math.random() * 40 - 20);
@@ -47,31 +45,25 @@ function generateMotion() {
 }
 
 // =======================
-// ANOMALY DETECTION (Z-SCORE)
+// ANOMALY DETECTION
 // =======================
 
-function detectAnomalies(data, threshold = 2.8) {
-  const temps = data.map(d => d.temperature);
+function detectAnomalies(data) {
+  let temps = data.map(d => d.temperature);
+  let mean = temps.reduce((a,b)=>a+b,0)/temps.length;
 
-  const mean = temps.reduce((a, b) => a + b, 0) / temps.length;
-
-  const variance = temps.reduce((sum, val) => {
-    return sum + Math.pow(val - mean, 2);
-  }, 0) / temps.length;
-
-  const std = Math.sqrt(variance);
+  let std = Math.sqrt(
+    temps.reduce((sum,val)=>sum+(val-mean)**2,0)/temps.length
+  );
 
   return data.map(d => {
-    const z = (d.temperature - mean) / std;
-    return {
-      ...d,
-      is_anomaly: Math.abs(z) > threshold
-    };
+    let z = (d.temperature - mean) / std;
+    return {...d, is_anomaly: Math.abs(z) > 2.8};
   });
 }
 
 // =======================
-// MAIN GENERATOR
+// MAIN
 // =======================
 
 function generateData() {
@@ -88,99 +80,104 @@ function generateData() {
     });
   }
 
-  // tambahkan hasil deteksi anomaly
   data = detectAnomalies(data);
-
   generatedData = data;
 
   document.getElementById("output").textContent =
     JSON.stringify(data, null, 2);
 
-  drawChart(data);
+  drawCharts(data, config.showAnomaly);
 }
 
 // =======================
-// DOWNLOAD FUNCTIONS
+// CHART BUILDER
 // =======================
 
-function downloadJSON() {
-  if (generatedData.length === 0) return alert("Generate data first!");
+function buildChart(canvasId, label, values, anomalies, showAnomaly) {
+  const ctx = document.getElementById(canvasId).getContext("2d");
 
-  let blob = new Blob([JSON.stringify(generatedData, null, 2)], {
-    type: "application/json"
-  });
+  if (charts[canvasId]) charts[canvasId].destroy();
 
-  let link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = "iot_data.json";
-  link.click();
-}
-
-function downloadCSV() {
-  if (generatedData.length === 0) return alert("Generate data first!");
-
-  let csv = "device_id,timestamp,temperature,humidity,motion,is_anomaly\n";
-
-  generatedData.forEach(row => {
-    csv += `${row.device_id},${row.timestamp},${row.temperature},${row.humidity},${row.motion},${row.is_anomaly}\n`;
-  });
-
-  let blob = new Blob([csv], { type: "text/csv" });
-
-  let link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = "iot_data.csv";
-  link.click();
-}
-
-// =======================
-// CHART WITH ANOMALY
-// =======================
-
-function drawChart(data) {
-  const labels = data.map((_, i) => i);
-
-  const normalData = data.map(d => d.is_anomaly ? null : d.temperature);
-  const anomalyData = data.map(d => d.is_anomaly ? d.temperature : null);
-
-  const ctx = document.getElementById("chart").getContext("2d");
-
-  if (chart) chart.destroy();
-
-  chart = new Chart(ctx, {
+  charts[canvasId] = new Chart(ctx, {
     type: "line",
     data: {
-      labels: labels,
+      labels: values.map((_,i)=>i),
       datasets: [
         {
-          label: "Temperature",
-          data: normalData,
+          label: label,
+          data: showAnomaly ? values.map((v,i)=> anomalies[i]?null:v) : values,
           borderWidth: 2
         },
-        {
+        ...(showAnomaly ? [{
           label: "Anomaly",
-          data: anomalyData,
+          data: values.map((v,i)=> anomalies[i]?v:null),
           pointRadius: 6,
           showLine: false
-        }
+        }] : [])
       ]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        x: {
-          title: { display: true, text: "Time Index" }
-        },
-        y: {
-          title: { display: true, text: "Temperature" }
-        }
-      }
     }
   });
 }
 
 // =======================
-// UI INTERACTION
+// DRAW ALL
+// =======================
+
+function drawCharts(data, showAnomaly) {
+  let anomalies = data.map(d => d.is_anomaly);
+
+  buildChart(
+    "tempChart",
+    "Temperature",
+    data.map(d=>d.temperature),
+    anomalies,
+    showAnomaly
+  );
+
+  buildChart(
+    "humChart",
+    "Humidity",
+    data.map(d=>d.humidity),
+    anomalies,
+    showAnomaly
+  );
+
+  buildChart(
+    "motionChart",
+    "Motion",
+    data.map(d=>d.motion),
+    anomalies,
+    showAnomaly
+  );
+}
+
+// =======================
+// DOWNLOAD
+// =======================
+
+function downloadJSON() {
+  let blob = new Blob([JSON.stringify(generatedData, null, 2)]);
+  let link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "data.json";
+  link.click();
+}
+
+function downloadCSV() {
+  let csv = "device_id,timestamp,temperature,humidity,motion,is_anomaly\n";
+  generatedData.forEach(r=>{
+    csv += `${r.device_id},${r.timestamp},${r.temperature},${r.humidity},${r.motion},${r.is_anomaly}\n`;
+  });
+
+  let blob = new Blob([csv]);
+  let link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "data.csv";
+  link.click();
+}
+
+// =======================
+// UI
 // =======================
 
 document.getElementById("dataCount").addEventListener("input", function() {
