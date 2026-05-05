@@ -15,6 +15,7 @@ function getConfig() {
     anomalyEnabled: document.getElementById("anomalyToggle").checked,
     showAnomaly: document.getElementById("showAnomaly").checked,
     intervalMs: parseInt(document.getElementById("intervalSelect")?.value || 1000)
+  };
 }
 
 // =======================
