@@ -358,7 +358,7 @@ function stopStreaming() {
 }
 
 // =======================
-// STATUS
+// STATUS : 1
 // =======================
 function updateStatus(text) {
   let el = document.getElementById("status");
