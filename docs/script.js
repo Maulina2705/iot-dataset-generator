@@ -383,25 +383,70 @@ function aggregateData(data, type) {
 // =======================
 // CHART (100 last points)
 // =======================
-function buildChart(id, label, values) {
+function buildMultiChart(id, datasets) {
   const ctx = document.getElementById(id).getContext("2d");
+
   if (charts[id]) charts[id].destroy();
 
   charts[id] = new Chart(ctx, {
     type: "line",
     data: {
-      labels: values.map((_, i) => i),
-      datasets: [{ label, data: values }]
+      labels: datasets[0].data.map((_, i) => i),
+      datasets: datasets
+    },
+    options: {
+      responsive: true,
+      interaction: { mode: 'index', intersect: false },
+      scales: {
+        y: { beginAtZero: false }
+      }
     }
   });
 }
 
 function drawCharts(data) {
-  const limited = data.slice(-100);
+  let limited = data.slice(-100);
 
-  buildChart("tempChart", "Temperature", limited.map(d => d.temperature));
-  buildChart("humChart", "Humidity", limited.map(d => d.humidity));
-  buildChart("motionChart", "Occupancy", limited.map(d => d.occupancy));
+  // =======================
+  // ENVIRONMENT
+  // =======================
+  buildMultiChart("envChart", [
+    { label: "Temperature (T)", data: limited.map(d => d.temperature) },
+    { label: "Humidity (H)", data: limited.map(d => d.humidity) },
+    { label: "Light1", data: limited.map(d => d.light) },
+    { label: "Light2", data: limited.map(d => d.light * 0.8) } // simulasi luar
+  ]);
+
+  // =======================
+  // OCCUPANCY
+  // =======================
+  buildMultiChart("occChart", [
+    { label: "Motion (PIR)", data: limited.map(d => d.pir) },
+    { label: "Counter Visitor", data: limited.map(d => d.occupancy) }
+  ]);
+
+  // =======================
+  // DEVICE STATUS
+  // =======================
+  buildMultiChart("statusChart", [
+    { label: "S-K (Fan)", data: limited.map(d => d.fan_status) },
+    { label: "S-C (Charger)", data: limited.map(d =>
+        (d.charger_phone_status || d.charger_tablet_status || d.charger_laptop_status) ? 1 : 0
+    )},
+    { label: "S-L (Lamp)", data: limited.map(d => d.lamp_status) }
+  ]);
+
+  // =======================
+  // POWER
+  // =======================
+  buildMultiChart("powerChart", [
+    { label: "P-K (Fan)", data: limited.map(d => d.fan_power) },
+    { label: "P-C (Charger)", data: limited.map(d =>
+        d.charger_phone_power + d.charger_tablet_power + d.charger_laptop_power
+    )},
+    { label: "P-L (Lamp)", data: limited.map(d => d.lamp_power) },
+    { label: "Total Power (TP)", data: limited.map(d => d.total_power) }
+  ]);
 }
 
 // =======================

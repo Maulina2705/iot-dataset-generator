@@ -3,7 +3,11 @@
 <head>
   <title>IoT Dataset Generator</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Script -->
   <script src="script.js" defer></script>
 </head>
 
@@ -11,9 +15,13 @@
 
   <h1>🚀 IoT Dataset Generator Dashboard</h1>
 
+  <!-- ===================== -->
+  <!-- CONTROL PANEL -->
+  <!-- ===================== -->
   <div class="panel">
+
     <label>Generate Rows:</label><br>
-    <input type="number" id="generateCount" value="200" min="10" max="10000">
+    <input type="number" id="generateCount" value="200" min="10" max="20000">
 
     <br><br>
 
@@ -30,8 +38,12 @@
     <label><input type="radio" name="resolution" value="second" checked> Detik</label>
     <label><input type="radio" name="resolution" value="minute"> Menit</label>
     <label><input type="radio" name="resolution" value="hour"> Jam</label>
+
   </div>
 
+  <!-- ===================== -->
+  <!-- ACTION BUTTON -->
+  <!-- ===================== -->
   <div class="controls">
     <button onclick="generateData()">Generate Data</button>
     <button onclick="startStreaming()">▶ Start</button>
@@ -39,15 +51,46 @@
     <button onclick="downloadCSV()">Download CSV</button>
   </div>
 
+  <!-- ===================== -->
+  <!-- STATUS PANEL -->
+  <!-- ===================== -->
   <div class="panel">
-    Status: <span id="status" style="color:red;">Stopped</span><br>
-    Data Count: <span id="liveCount">0</span>
+    <strong>Status:</strong> 
+    <span id="status" style="color:red;">Stopped</span>
+    <br>
+    <strong>Data Count:</strong> 
+    <span id="liveCount">0</span>
   </div>
 
+  <!-- ===================== -->
+  <!-- DASHBOARD CHART -->
+  <!-- ===================== -->
   <div class="grid">
-    <div class="card"><canvas id="tempChart"></canvas></div>
-    <div class="card"><canvas id="humChart"></canvas></div>
-    <div class="card"><canvas id="motionChart"></canvas></div>
+
+    <!-- 🌡 ENVIRONMENT -->
+    <div class="card">
+      <h3>🌡 Environment</h3>
+      <canvas id="envChart"></canvas>
+    </div>
+
+    <!-- 🧍 OCCUPANCY -->
+    <div class="card">
+      <h3>🧍 Occupancy</h3>
+      <canvas id="occChart"></canvas>
+    </div>
+
+    <!-- 🔌 DEVICE STATUS -->
+    <div class="card">
+      <h3>🔌 Device Status</h3>
+      <canvas id="statusChart"></canvas>
+    </div>
+
+    <!-- ⚡ POWER -->
+    <div class="card">
+      <h3>⚡ Power</h3>
+      <canvas id="powerChart"></canvas>
+    </div>
+
   </div>
 
 </body>
