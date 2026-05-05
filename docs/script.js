@@ -9,13 +9,12 @@ let currentIndex = 0;
 
 function getConfig() {
   return {
-    intervalMs: parseInt(document.getElementById("intervalSelect").value),
-    showAnomaly: document.getElementById("showAnomaly").checked
+    intervalMs: parseInt(document.getElementById("intervalSelect").value)
   };
 }
 
 // =======================
-// GENERATOR (per detik)
+// GENERATOR
 // =======================
 
 function generatePoint(i) {
@@ -66,6 +65,57 @@ function aggregateData(data, type) {
 }
 
 // =======================
+// CHART
+// =======================
+
+function buildChart(id, label, values) {
+  const ctx = document.getElementById(id).getContext("2d");
+
+  if (charts[id]) charts[id].destroy();
+
+  charts[id] = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: values.map((_, i) => i),
+      datasets: [{
+        label: label,
+        data: values
+      }]
+    }
+  });
+}
+
+function drawCharts(data) {
+  let limited = data.slice(-100); // 🔥 hanya 100 terakhir
+
+  buildChart("tempChart", "Temperature", limited.map(d => d.temperature));
+  buildChart("humChart", "Humidity", limited.map(d => d.humidity));
+  buildChart("motionChart", "Motion", limited.map(d => d.motion));
+}
+
+// =======================
+// GENERATE STATIC
+// =======================
+
+function generateData() {
+  generatedData = [];
+  currentIndex = 0;
+
+  let count = parseInt(document.getElementById("generateCount").value) || 100;
+
+  for (let i = 0; i < count; i++) {
+    generatedData.push(generatePoint(i));
+  }
+
+  let resolution = document.querySelector('input[name="resolution"]:checked').value;
+  let data = aggregateData(generatedData, resolution);
+
+  drawCharts(data);
+
+  document.getElementById("liveCount").textContent = generatedData.length;
+}
+
+// =======================
 // STREAMING
 // =======================
 
@@ -73,7 +123,6 @@ function startStreaming() {
   if (streamInterval) return;
 
   updateStatus("Streaming...");
-
   let config = getConfig();
 
   streamInterval = setInterval(() => {
@@ -84,7 +133,7 @@ function startStreaming() {
     let resolution = document.querySelector('input[name="resolution"]:checked').value;
     let data = aggregateData(generatedData, resolution);
 
-    drawCharts(data, config.showAnomaly);
+    drawCharts(data);
 
     document.getElementById("liveCount").textContent = generatedData.length;
 
@@ -110,47 +159,6 @@ function updateStatus(text) {
 }
 
 // =======================
-// CHART
-// =======================
-
-function buildChart(id, label, values) {
-  const ctx = document.getElementById(id).getContext("2d");
-
-  if (charts[id]) charts[id].destroy();
-
-  charts[id] = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: values.map((_, i) => i),
-      datasets: [{
-        label: label,
-        data: values
-      }]
-    }
-  });
-}
-
-function drawCharts(data) {
-  buildChart("tempChart", "Temperature", data.map(d => d.temperature));
-  buildChart("humChart", "Humidity", data.map(d => d.humidity));
-  buildChart("motionChart", "Motion", data.map(d => d.motion));
-}
-
-// =======================
-// GENERATE STATIC
-// =======================
-
-function generateData() {
-  generatedData = [];
-
-  for (let i = 0; i < 200; i++) {
-    generatedData.push(generatePoint(i));
-  }
-
-  drawCharts(generatedData);
-}
-
-// =======================
 // DOWNLOAD
 // =======================
 
@@ -170,13 +178,3 @@ function downloadCSV() {
   link.download = `data_${resolution}.csv`;
   link.click();
 }
-
-// =======================
-// INIT
-// =======================
-
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("dataCount").addEventListener("input", function() {
-    document.getElementById("dataCountLabel").textContent = this.value;
-  });
-});
