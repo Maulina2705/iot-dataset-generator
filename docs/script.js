@@ -2,6 +2,7 @@ function generateTemperature(i) {
   let base = 25 + 5 * Math.sin(2 * Math.PI * i / 24);
   let noise = (Math.random() - 0.5);
   let value = base + noise;
+  let generatedData = [];
 
   // anomaly
   if (Math.random() < 0.02) {
