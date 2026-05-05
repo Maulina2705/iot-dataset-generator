@@ -8,7 +8,6 @@ A realistic **IoT data simulation engine** for smart home environments, built fo
 
 ![Dashboard Preview](./assets/dashboard.png)
 
-> 💡 Tip: Tambahkan screenshot dashboard kamu ke folder `assets/` dengan nama `dashboard.png`
 
 ---
 
