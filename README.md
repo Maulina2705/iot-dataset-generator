@@ -6,7 +6,7 @@ A realistic **IoT data simulation engine** for smart home environments, built fo
 
 ## 📸 Preview
 
-![Dashboard Preview](./assets/dashboard.png)
+![Dashboard Preview](./assets/dashboard.git)
 
 
 ---
