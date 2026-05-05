@@ -9,18 +9,31 @@ let streamInterval = null;
 let currentIndex = 0;
 let startTime = null;
 
-// device dynamic state (power smooth)
 let deviceState = {
   fan: { power: 0 },
   lamp: { power: 0 },
   charger: { power: 0 }
 };
 
-// occupancy state
 let currentOccupancy = 0;
-
-// weather
 let weatherState = "clear";
+
+// =======================
+// MQTT SETUP
+// =======================
+let client = mqtt.connect("wss://broker.hivemq.com:8884/mqtt");
+
+client.on("connect", () => {
+  console.log("✅ MQTT Connected");
+});
+
+client.on("reconnect", () => {
+  console.log("🔄 Reconnecting MQTT...");
+});
+
+client.on("error", (err) => {
+  console.error("❌ MQTT Error:", err);
+});
 
 // =======================
 // CONFIG
@@ -39,7 +52,7 @@ function getSimulatedTime(idx) {
 }
 
 // =======================
-// WEATHER (Markov)
+// WEATHER (MARKOV)
 // =======================
 function nextWeather() {
   let r = Math.random();
@@ -100,7 +113,7 @@ function getNaturalLight(hour) {
 }
 
 // =======================
-// TEMP + HUM
+// TEMP & HUM
 // =======================
 function generateTemp(hour, occ) {
   let base = 27 + 3 * Math.sin((2 * Math.PI * hour) / 24);
@@ -120,33 +133,25 @@ function generateHum(temp) {
 }
 
 // =======================
-// POWER SIMULATION 🔥
+// POWER ENGINE 🔥
 // =======================
 function simulatePower(target, prev) {
 
-  // OFF → decay pelan
   if (target === 0) {
     return Math.max(0, prev - Math.random() * 5);
   }
 
-  // ramp-up smooth
   let diff = target - prev;
-
   let ramp = diff * 0.2;
 
-  // fluktuasi kecil
   let noise = (Math.random() - 0.5) * target * 0.05;
-
-  // spike random kecil
   let spike = Math.random() < 0.05 ? target * 0.1 : 0;
 
-  let newPower = prev + ramp + noise + spike;
-
-  return Math.max(0, newPower);
+  return Math.max(0, prev + ramp + noise + spike);
 }
 
 // =======================
-// MAIN GENERATOR
+// GENERATE POINT
 // =======================
 function generatePoint(i) {
   let t = getSimulatedTime(i);
@@ -165,33 +170,13 @@ function generatePoint(i) {
   let hum = generateHum(temp);
 
   let fanStatus = (temp > 30 || occ >= 3) ? 1 : 0;
-
-  // charger logic (simple realistic)
   let chargerStatus = Math.random() < 0.1 ? 1 : 0;
 
-  // =======================
-  // POWER DYNAMIC
-  // =======================
-  const W = {
-    fan: 80,
-    lamp: 12,
-    charger: 65
-  };
+  const W = { fan: 80, lamp: 12, charger: 65 };
 
-  deviceState.fan.power = simulatePower(
-    fanStatus ? W.fan : 0,
-    deviceState.fan.power
-  );
-
-  deviceState.lamp.power = simulatePower(
-    lampStatus ? W.lamp : 0,
-    deviceState.lamp.power
-  );
-
-  deviceState.charger.power = simulatePower(
-    chargerStatus ? W.charger : 0,
-    deviceState.charger.power
-  );
+  deviceState.fan.power = simulatePower(fanStatus ? W.fan : 0, deviceState.fan.power);
+  deviceState.lamp.power = simulatePower(lampStatus ? W.lamp : 0, deviceState.lamp.power);
+  deviceState.charger.power = simulatePower(chargerStatus ? W.charger : 0, deviceState.charger.power);
 
   let fanPower = deviceState.fan.power;
   let lampPower = deviceState.lamp.power;
@@ -199,7 +184,10 @@ function generatePoint(i) {
 
   let roomPower = fanPower + lampPower + chargerPower;
 
-  let totalPower = roomPower + 100 + Math.random() * 200;
+  let baseLoad = 150 + Math.sin(i / 50) * 50;
+  let noise = (Math.random() - 0.5) * 20;
+
+  let totalPower = roomPower + baseLoad + noise;
 
   return {
     timestamp: t.toISOString(),
@@ -236,10 +224,9 @@ function aggregateData(data, type) {
   data.forEach(d => {
     let date = new Date(d.timestamp);
 
-    let key =
-      type === "minute"
-        ? date.toISOString().slice(0, 16)
-        : date.toISOString().slice(0, 13);
+    let key = type === "minute"
+      ? date.toISOString().slice(0, 16)
+      : date.toISOString().slice(0, 13);
 
     if (!map[key]) {
       map[key] = { ...d, count: 1 };
@@ -260,7 +247,7 @@ function aggregateData(data, type) {
 }
 
 // =======================
-// CHART MULTI
+// CHART
 // =======================
 function buildMultiChart(id, datasets) {
   let ctx = document.getElementById(id).getContext("2d");
@@ -313,6 +300,10 @@ function generateData() {
   currentIndex = 0;
   startTime = new Date();
 
+  deviceState = { fan: { power: 0 }, lamp: { power: 0 }, charger: { power: 0 } };
+  currentOccupancy = 0;
+  weatherState = "clear";
+
   let count = parseInt(document.getElementById("generateCount").value || 200);
 
   for (let i = 0; i < count; i++) {
@@ -335,6 +326,10 @@ function startStreaming() {
   currentIndex = 0;
   generatedData = [];
 
+  deviceState = { fan: { power: 0 }, lamp: { power: 0 }, charger: { power: 0 } };
+  currentOccupancy = 0;
+  weatherState = "clear";
+
   updateStatus("Streaming...");
 
   let config = getConfig();
@@ -343,13 +338,19 @@ function startStreaming() {
     let p = generatePoint(currentIndex);
     generatedData.push(p);
 
+    // 🔥 MQTT PUBLISH
+    if (client && client.connected) {
+      client.publish("iot/smartroom/data", JSON.stringify(p));
+      console.log("📡 Sent:", new Date().toLocaleTimeString(), p);
+    }
+
     let res = document.querySelector('input[name="resolution"]:checked').value;
 
     drawCharts(aggregateData(generatedData, res));
-
     document.getElementById("liveCount").textContent = generatedData.length;
 
     currentIndex++;
+
   }, config.intervalMs);
 }
 
@@ -360,7 +361,7 @@ function stopStreaming() {
 }
 
 // =======================
-// STATUS : 1
+// STATUS
 // =======================
 function updateStatus(text) {
   let el = document.getElementById("status");
