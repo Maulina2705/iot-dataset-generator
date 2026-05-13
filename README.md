@@ -40,11 +40,19 @@ without relying on real hardware.
 </p>
 
 ---
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+---
 
 ## Realtime Monitoring & Intelligent Operational Simulation
 
 Simulith is an immersive telemetry simulation platform designed to emulate how modern monitoring systems behave in live operational environments — without relying on physical sensors or realtime hardware infrastructure.
 
+---
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
 ---
 
 ## Overview
@@ -62,6 +70,10 @@ The platform continuously simulates operational behavior including:
 
 without relying on physical hardware infrastructure.
 
+---
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
 ---
 
 ## System Preview
@@ -83,6 +95,10 @@ The dashboard includes:
 * synchronized operational feedback
 
 ---
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+---
 
 ### Realtime Simulation Environment
 
@@ -92,6 +108,10 @@ The dashboard includes:
 
 The interface continuously reacts to simulation presets and contextual operational changes to create a monitoring experience that feels persistent and alive.
 
+---
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
 ---
 
 ## Core Systems
@@ -119,6 +139,10 @@ The dashboard continuously generates:
 This creates a persistent operational atmosphere across the system.
 
 ---
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+---
 
 ### Dataset Generator
 
@@ -130,6 +154,10 @@ Simulith includes an internal telemetry memory engine capable of:
 - Realtime dataset generation
 
 ---
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+---
 
 ### Adaptive UI System
 
@@ -140,6 +168,10 @@ Includes:
 - Responsive dashboard layout
 - Glow-based operational UI styling
 
+---
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
 ---
 
 ### Upcoming Features
@@ -154,6 +186,10 @@ The following systems are planned for future updates:
 - Advanced Mobile Optimization
 - Modular Frontend Architecture
 
+---
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
 ---
 
 ## How Simulith Works
@@ -175,6 +211,10 @@ Export Pipeline
 ```
 
 ---
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+---
 
 ## Technical Architecture
 
@@ -190,6 +230,10 @@ Export Pipeline
 | Export System | CSV / JSON Generation |
 
 ---
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+---
 
 ### Architecture Diagram
 
@@ -197,6 +241,10 @@ Export Pipeline
   <img src="./assets/branding/system-architecture.png" width="100%" alt="Architecture Diagram" />
 </p>
 
+---
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
 ---
 
 ## UI / UX Philosophy
@@ -215,6 +263,10 @@ Instead of presenting isolated cards and charts, the system attempts to simulate
 
 The objective is to create a dashboard experience that feels immersive rather than static.
 
+---
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
 ---
 
 ## Design Philosophy
@@ -238,6 +290,10 @@ The objective is not hardware accuracy.
 The objective is operational immersion.
 
 ---
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+---
 
 ## Project Structure
 
@@ -258,6 +314,10 @@ simulith/
 ```
 
 ---
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+---
 
 ## Installation
 
@@ -272,6 +332,10 @@ Open:
 docs/index-v2.html
 ```
 
+---
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
 ---
 
 ## Roadmap
@@ -290,11 +354,19 @@ docs/index-v2.html
 | Modular Architecture Refactor | Soon |
 
 ---
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+---
 
 ## License
 
 MIT License
 
+---
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
 ---
 
 ## Final Notes
