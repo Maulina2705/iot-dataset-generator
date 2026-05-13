@@ -1,0 +1,38 @@
+<svg width="1200" height="80" viewBox="0 0 1200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+<style>
+
+.line {
+  stroke: #111827;
+  stroke-width: 2;
+}
+
+.glow {
+  fill: #00CFFF;
+  filter: drop-shadow(0 0 10px #00CFFF);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+  0% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.3;
+  }
+
+}
+
+</style>
+
+<line x1="100" y1="40" x2="1100" y2="40" class="line"/>
+
+<circle cx="600" cy="40" r="5" class="glow"/>
+
+</svg>
