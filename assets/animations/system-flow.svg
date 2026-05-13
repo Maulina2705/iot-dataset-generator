@@ -1,0 +1,153 @@
+<svg width="1400" height="420" viewBox="0 0 1400 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+<style>
+
+.bg {
+  fill: #050816;
+}
+
+.line {
+  stroke: #00CFFF;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 12;
+  animation: flow 4s linear infinite;
+}
+
+.node {
+  fill: #0B1220;
+  stroke-width: 5;
+  filter: drop-shadow(0 0 14px rgba(0,207,255,0.35));
+}
+
+.node-blue {
+  stroke: #00CFFF;
+}
+
+.node-purple {
+  stroke: #7B61FF;
+}
+
+.node-green {
+  stroke: #00E6C3;
+}
+
+.title {
+  fill: white;
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+
+.subtitle {
+  fill: #94A3B8;
+  font-size: 13px;
+  font-family: Arial, sans-serif;
+}
+
+.small {
+  fill: #64748B;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+}
+
+.pulse {
+  fill: #00CFFF;
+  filter: drop-shadow(0 0 10px #00CFFF);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes flow {
+  from {
+    stroke-dashoffset: 48;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes pulse {
+
+  0% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+}
+
+</style>
+
+<rect width="100%" height="100%" class="bg"/>
+
+<!-- MAIN FLOW LINE -->
+
+<line x1="100" y1="210" x2="1300" y2="210" class="line"/>
+
+<!-- NODE 1 -->
+<circle cx="140" cy="210" r="34" class="node node-blue"/>
+<circle cx="140" cy="210" r="7" class="pulse"/>
+
+<text x="70" y="90" class="title">Simulation Preset</text>
+<text x="70" y="115" class="subtitle">Controls operational scenarios</text>
+<text x="70" y="140" class="small">Dynamic environment presets</text>
+
+<!-- NODE 2 -->
+<circle cx="320" cy="210" r="34" class="node node-purple"/>
+<circle cx="320" cy="210" r="7" class="pulse"/>
+
+<text x="240" y="320" class="title">Telemetry Engine</text>
+<text x="240" y="345" class="subtitle">Realtime synchronized telemetry</text>
+<text x="240" y="370" class="small">Continuous operational streams</text>
+
+<!-- NODE 3 -->
+<circle cx="500" cy="210" r="34" class="node node-green"/>
+<circle cx="500" cy="210" r="7" class="pulse"/>
+
+<text x="420" y="90" class="title">System Update</text>
+<text x="420" y="115" class="subtitle">Contextual behavioral changes</text>
+<text x="420" y="140" class="small">Adaptive operational response</text>
+
+<!-- NODE 4 -->
+<circle cx="680" cy="210" r="34" class="node node-blue"/>
+<circle cx="680" cy="210" r="7" class="pulse"/>
+
+<text x="600" y="320" class="title">Activity & Logs</text>
+<text x="600" y="345" class="subtitle">Persistent operational feedback</text>
+<text x="600" y="370" class="small">Realtime activity generation</text>
+
+<!-- NODE 5 -->
+<circle cx="860" cy="210" r="34" class="node node-purple"/>
+<circle cx="860" cy="210" r="7" class="pulse"/>
+
+<text x="770" y="90" class="title">Anomaly Detection</text>
+<text x="770" y="115" class="subtitle">Operational inconsistency analysis</text>
+<text x="770" y="140" class="small">Contextual alert generation</text>
+
+<!-- NODE 6 -->
+<circle cx="1040" cy="210" r="34" class="node node-green"/>
+<circle cx="1040" cy="210" r="7" class="pulse"/>
+
+<text x="950" y="320" class="title">Dataset Engine</text>
+<text x="950" y="345" class="subtitle">Telemetry memory system</text>
+<text x="950" y="370" class="small">Historical operational storage</text>
+
+<!-- NODE 7 -->
+<circle cx="1220" cy="210" r="34" class="node node-blue"/>
+<circle cx="1220" cy="210" r="7" class="pulse"/>
+
+<text x="1130" y="90" class="title">Export Pipeline</text>
+<text x="1130" y="115" class="subtitle">JSON and CSV generation</text>
+<text x="1130" y="140" class="small">Operational dataset export</text>
+
+</svg>
