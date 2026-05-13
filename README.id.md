@@ -99,3 +99,67 @@ tanpa bergantung pada perangkat keras nyata.
 ## Monitoring Realtime & Simulasi Operasional Cerdas
 
 Simulith adalah platform simulasi telemetri imersif yang dirancang untuk meniru bagaimana sistem monitoring modern bekerja di lingkungan operasional realtime — tanpa bergantung pada sensor fisik maupun infrastruktur perangkat keras nyata.
+
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+
+```ini
+IDENTITAS SISTEM
+
+NAMA        : SIMULITH
+TIPE        : Platform Simulasi Telemetri
+STATUS      : ACTIVE
+INTERFACE   : Dashboard Operasional Adaptif
+ARSITEKTUR  : Sistem Simulasi Perilaku
+MODE        : Sinkronisasi Realtime
+```
+
+## Overview
+
+Simulith merupakan dashboard simulasi telemetri dan operasional realtime yang dirancang untuk meniru bagaimana sistem monitoring modern bekerja dalam lingkungan menyerupai produksi nyata.
+
+Platform ini secara terus menerus mensimulasikan perilaku operasional seperti:
+
+* telemetri realtime
+* aktivitas okupansi
+* monitoring lingkungan
+* deteksi anomali
+* reaksi sistem kontekstual
+* logging operasional
+
+tanpa bergantung pada infrastruktur perangkat keras fisik.
+
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+
+## Preview Sistem
+
+### Dashboard Operasional Realtime
+
+<p align="center">
+  <img src="./assets/branding/dashboard.png" width="100%" alt="Simulith Dashboard Preview"/>
+</p>
+
+Simulith memvisualisasikan telemetri operasional melalui antarmuka monitoring realtime yang responsif untuk menciptakan pengalaman monitoring yang terasa hidup dan sinkron.
+
+Dashboard ini mencakup:
+
+* visualisasi telemetri kontekstual
+* alur aktivitas realtime
+* monitoring anomali
+* pelacakan lingkungan adaptif
+* feedback operasional tersinkronisasi
+
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+
+### Lingkungan Simulasi Realtime
+
+<p align="center">
+  <img src="./assets/branding/dashboard.gif" width="100%" alt="Realtime Dashboard Simulation"/>
+</p>
+
+Antarmuka akan terus bereaksi terhadap preset simulasi dan perubahan operasional kontekstual untuk menciptakan pengalaman monitoring yang terasa persisten dan dinamis.
