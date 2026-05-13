@@ -228,23 +228,13 @@ The following systems are planned for future updates:
   <img src="./assets/animations/section-divider.svg" width="100%" />
 </p>
 
-## How Simulith Works
+## System Flow Architecture
 
-```text
-Simulation Preset
-        ↓
-Realtime Telemetry Engine
-        ↓
-Contextual System Update
-        ↓
-Logs / Activity / Toasts
-        ↓
-Anomaly Detection
-        ↓
-Dataset Memory Engine
-        ↓
-Export Pipeline
-```
+<p align="center">
+  <img src="./assets/animations/system-flow.svg" width="100%" />
+</p>
+
+Simulith continuously synchronizes telemetry behavior, operational simulation, contextual feedback, and dataset generation through a unified realtime simulation pipeline.
 
 <p align="center">
   <img src="./assets/animations/section-divider.svg" width="100%" />
