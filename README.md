@@ -2,14 +2,9 @@
   <img src="./assets/animations/boot-sequence.svg" width="100%" />
 </p>
 
-```text
-STATUS      MODULE                          CONDITION
-
-[ LIVE ]    Telemetry Stream                SYNCHRONIZED
-[ OK ]      Environment Engine              STABLE
-[ WARN ]    Occupancy Simulation            FLUCTUATING
-[ LIVE ]    Dataset Memory Engine           ACTIVE
-```
+<p align="center">
+  <img src="./assets/animations/telemetry-divider.svg" width="100%" />
+</p>
 
 ---
 
