@@ -6,7 +6,9 @@
   <img src="./assets/animations/telemetry-divider.svg" width="100%" />
 </p>
 
----
+<p align="center">
+  <img src="./assets/animations/system-status.svg" width="100%" />
+</p>
 
 <p align="center">
   <img src="./assets/branding/simulith-banner.png" width="100%" alt="Simulith Banner"/>
