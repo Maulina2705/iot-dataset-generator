@@ -240,6 +240,23 @@ Simulith continuously synchronizes operational simulation, telemetry generation,
   <img src="./assets/animations/section-divider.svg" width="100%" />
 </p>
 
+## Engineering Highlights
+
+Simulith was designed as a behavioral simulation system rather than a static dashboard interface.
+
+The project currently includes:
+
+| Engine | Purpose |
+|---|---|
+| Realtime Simulation Loop | Continuously updates operational telemetry behavior |
+| Contextual Preset System | Dynamically changes dashboard activity patterns |
+| Operational Log Generator | Produces synchronized realtime system events |
+| Dataset Memory Engine | Stores operational telemetry snapshots |
+| Adaptive Theme Engine | Synchronizes operational visuals across themes |
+| Visualization Synchronization | Keeps charts and telemetry systems contextually aligned |
+
+The system architecture intentionally focuses on operational continuity, behavioral synchronization, and immersive telemetry simulation.
+
 ## Technical Architecture
 
 ### Current Stack
