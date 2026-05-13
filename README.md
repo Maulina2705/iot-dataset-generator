@@ -406,6 +406,8 @@ Launching realtime simulation engine...
 Start Interface
 
 docs/index.html
+
+> Designed for experimentation, visualization, and operational immersion.
 ```
 
 <p align="center">
