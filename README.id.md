@@ -163,3 +163,94 @@ Dashboard ini mencakup:
 </p>
 
 Antarmuka akan terus bereaksi terhadap preset simulasi dan perubahan operasional kontekstual untuk menciptakan pengalaman monitoring yang terasa persisten dan dinamis.
+
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+
+## Snapshot Operasional Langsung
+
+```yaml
+Status Lingkungan:
+  temperature: 26.4°C
+  humidity: 58%
+  occupancy: 8 orang
+  air_quality: GOOD
+
+Telemetri:
+  stream: synchronized
+  anomaly_level: low
+  dataset_engine: active
+  visualization_sync: stable
+
+Konteks Simulasi:
+  preset: Normal Day
+  operational_state: stable
+  telemetry_load: moderate
+```
+
+## Aliran Event Realtime
+
+```bash
+[12:45:02] telemetry synchronized
+[12:45:03] occupancy fluctuation detected
+[12:45:05] contextual simulation updated
+[12:45:07] anomaly threshold stabilized
+[12:45:08] dataset snapshot generated
+[12:45:10] operational environment synchronized
+```
+
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+
+## Sistem Inti
+
+| Sistem | Deskripsi |
+|---|---|
+| Mesin Telemetri Realtime | Mensimulasikan aliran telemetri operasional secara terus menerus |
+| Preset Simulasi Kontekstual | Mengubah perilaku sistem berdasarkan skenario operasional |
+| Log Operasional Langsung | Menghasilkan event dan aktivitas realtime tersinkronisasi |
+| Mesin Dataset | Membuat dataset operasional dalam format JSON dan CSV |
+| Adaptive UI Engine | Mendukung visualisasi operasional dark/light mode |
+| Sistem Deteksi Anomali | Mensimulasikan inkonsistensi dan alert lingkungan |
+| Monitoring Lingkungan | Mensimulasikan suhu, kelembapan, okupansi, dan kualitas udara |
+| Visualization Layer | Menjaga sinkronisasi realtime antara chart dan telemetri |
+
+### Aktivitas & Log Operasional
+
+Dashboard secara terus menerus menghasilkan:
+
+- pembaruan aktivitas realtime
+- event operasional
+- log telemetri
+- notifikasi kontekstual
+
+Hal ini menciptakan atmosfer operasional yang terasa aktif dan persisten.
+
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+
+### Mesin Dataset
+
+Simulith memiliki sistem memori telemetri internal yang mampu:
+
+- export JSON
+- export CSV
+- penyimpanan histori telemetri
+- pembuatan dataset realtime
+
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+
+### Sistem UI Adaptif
+
+Mencakup:
+
+- pergantian dark / light theme
+- feedback visual realtime
+- layout dashboard responsif
+- styling UI operasional berbasis glow
+
