@@ -1,7 +1,3 @@
-<p align="center">
-- Sensor latency detected
-- Temperature instability
-
 ---
 
 <p align="center">
@@ -33,19 +29,28 @@ without relying on real hardware.
 
 </p>
 
-<p align="center">
-
-<img src="https://img.shields.io/badge/UI-Adaptive-111827?style=flat-square">
-
-</p>
-
 ---
 
 ## Realtime Monitoring & Intelligent Operational Simulation
 
-Simulith is an immersive telemetry simulation platform designed to emulate how modern monitoring systems behave in live operational environments.
-
 Simulith is an immersive telemetry simulation platform designed to emulate how modern monitoring systems behave in live operational environments — without relying on physical sensors or realtime hardware infrastructure.
+
+---
+
+## Overview
+
+Simulith is a realtime telemetry and operational simulation dashboard designed to emulate how modern monitoring systems behave in production-like environments.
+
+The platform continuously simulates operational behavior including:
+
+* realtime telemetry
+* occupancy activity
+* environmental monitoring
+* anomaly detection
+* contextual system reactions
+* operational logging
+
+without relying on physical hardware infrastructure.
 
 ### Live Activity & Operational Logs
 
