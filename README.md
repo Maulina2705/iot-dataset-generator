@@ -398,6 +398,7 @@ simulith/
 git clone https://github.com/your-username/simulith.git
 
 cd simulith
+```
 
 Initializing operational environment...
 Synchronizing telemetry modules...
@@ -405,7 +406,7 @@ Launching realtime simulation engine...
 
 Start Interface
 
-docs/index.html
+```docs/index.html
 
 > Designed for experimentation, visualization, and operational immersion.
 ```
