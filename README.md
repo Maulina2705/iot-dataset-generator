@@ -397,7 +397,7 @@ simulith/
 Clone the repository and launch the simulated operational environment.
 
 ```bash
-git clone https://github.com/maulina2705/simulith.git
+git clone https://github.com/Maulina2705/simulith.git
 
 cd simulith
 ```
@@ -441,7 +441,11 @@ Simulith runs entirely inside a synthetic realtime telemetry environment designe
 
 ## License
 
-MIT License
+This project is released under the MIT License.
+
+Simulith was created as an experimental operational simulation platform focused on realtime telemetry behavior, adaptive visualization, and synthetic monitoring environments.
+
+> Designed for experimentation, visualization, and operational immersion.
 
 <p align="center">
   <img src="./assets/animations/section-divider.svg" width="100%" />
