@@ -254,3 +254,191 @@ Mencakup:
 - layout dashboard responsif
 - styling UI operasional berbasis glow
 
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+
+### Fitur Pengembangan Selanjutnya
+
+Beberapa sistem yang direncanakan untuk update berikutnya:
+
+- Predictive Analytics
+- AI Forecast Engine
+- MQTT Integration
+- Historical Analytics Pipeline
+- Smart Correlation Engine
+- Advanced Mobile Optimization
+- Modular Frontend Architecture
+
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+
+## Arsitektur Alur Sistem
+
+<p align="center">
+  <img src="./assets/animations/system-diagram.svg" width="100%" />
+</p>
+
+Simulith secara terus menerus menyinkronkan simulasi operasional, generasi telemetri, reaksi sistem kontekstual, dan pemrosesan dataset melalui pipeline operasional realtime yang terintegrasi.
+
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+
+## Highlight Engineering
+
+Simulith dirancang sebagai sistem simulasi perilaku operasional, bukan sekadar dashboard statis biasa.
+
+Project ini saat ini mencakup:
+
+| Engine | Fungsi |
+|---|---|
+| Realtime Simulation Loop | Memperbarui perilaku telemetri secara terus menerus |
+| Contextual Preset System | Mengubah pola aktivitas dashboard berdasarkan preset |
+| Operational Log Generator | Menghasilkan event sistem realtime tersinkronisasi |
+| Dataset Memory Engine | Menyimpan snapshot telemetri operasional |
+| Adaptive Theme Engine | Menyinkronkan visual operasional antar tema |
+| Visualization Synchronization | Menjaga sinkronisasi chart dan sistem telemetri |
+
+Arsitektur sistem difokuskan pada kontinuitas operasional, sinkronisasi perilaku, dan simulasi telemetri yang imersif.
+
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+
+## Filosofi UI / UX
+
+Simulith dirancang berdasarkan satu prinsip utama:
+
+> Dashboard monitoring seharusnya terasa hidup.
+
+Alih-alih hanya menampilkan kartu dan chart statis, sistem ini dirancang untuk mensimulasikan kontinuitas operasional melalui:
+
+- sinkronisasi perilaku sistem
+- reaksi telemetri kontekstual
+- feedback operasional realtime
+- visualisasi adaptif
+- aliran aktivitas persisten
+
+Tujuannya bukan hanya visualisasi data.
+
+Tujuannya adalah menciptakan pengalaman monitoring yang terasa imersif.
+
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+
+## Filosofi Desain
+
+Sebagian besar dashboard monitoring hanya memvisualisasikan data.
+
+Simulith mencoba memvisualisasikan perilaku.
+
+Daripada membuat antarmuka monitoring yang statis, sistem ini dirancang untuk mensimulasikan bagaimana lingkungan operasional terasa ketika sistem telemetri terus bereaksi, tersinkronisasi, dan berkembang secara realtime.
+
+Setiap bagian dashboard dibangun untuk mendukung ilusi ekosistem operasional yang terasa hidup:
+
+- pergerakan telemetri tersinkronisasi
+- reaksi anomali kontekstual
+- generasi aktivitas persisten
+- perubahan lingkungan adaptif
+- kontinuitas operasional
+
+Tujuannya bukan akurasi perangkat keras.
+
+Tujuannya adalah imersi operasional.
+
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+
+## Struktur Project
+
+```bash
+simulith/
+│
+├── docs/
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+│
+├── assets/
+│   ├── animations/
+│   └── branding/
+│
+└── README.md
+```
+
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+
+## Quick Initialization
+
+Clone repository dan jalankan lingkungan simulasi operasional.
+
+```bash
+git clone https://github.com/Maulina2705/simulith.git
+
+cd simulith
+```
+
+<p align="center">
+  <img src="./assets/animations/boot-sequence.svg" width="100%" />
+</p>
+
+### Jalankan Interface
+
+```bash
+docs/index.html
+```
+
+Simulith berjalan sepenuhnya di dalam lingkungan telemetri realtime sintetis yang dirancang untuk visualisasi operasional dan simulasi perilaku sistem.
+
+> Dirancang untuk eksperimen, visualisasi, dan imersi operasional.
+
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+
+## Roadmap
+
+| Feature | Status |
+|---|---|
+| Realtime Telemetry Engine | Completed |
+| Contextual Simulation Presets | Completed |
+| Adaptive Theme System | Completed |
+| Dataset Memory Engine | Completed |
+| CSV / JSON Export | In Progress |
+| Predictive Analytics | Soon |
+| MQTT Integration | Soon |
+| Forecasting Engine | Soon |
+| Mobile Optimization | Soon |
+| Modular Architecture Refactor | Soon |
+
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+
+## Lisensi
+
+Project ini menggunakan lisensi MIT License.
+
+Simulith dibuat sebagai platform simulasi operasional eksperimental yang berfokus pada perilaku telemetri realtime, visualisasi adaptif, dan lingkungan monitoring sintetis.
+
+> Dirancang untuk eksperimen, visualisasi, dan imersi operasional.
+
+<p align="center">
+  <img src="./assets/animations/section-divider.svg" width="100%" />
+</p>
+
+## Catatan Akhir
+
+Simulith tidak dirancang untuk mereplikasi platform telemetri production-grade secara penuh.
+
+Sebaliknya, project ini mengeksplorasi bagaimana perilaku operasional simulatif, sinkronisasi sistem telemetri, dan feedback UI imersif dapat menciptakan ilusi ekosistem monitoring yang terasa hidup.
+
+Seluruh pengalaman ini merupakan simulasi.
+
+Dan memang itu tujuannya.
