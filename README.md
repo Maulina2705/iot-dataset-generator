@@ -234,7 +234,11 @@ The following systems are planned for future updates:
   <img src="./assets/animations/system-flow.svg" width="100%" />
 </p>
 
-Simulith continuously synchronizes operational simulation, telemetry generation, contextual system reactions, anomaly detection, and dataset memory processing through a unified realtime operational pipeline.
+<p align="center">
+  <img src="./assets/animations/system-flow-2.svg" width="100%" />
+</p>
+
+Simulith continuously synchronizes operational simulation, telemetry generation, contextual system reactions, and dataset processing through a unified realtime operational pipeline.
 
 <p align="center">
   <img src="./assets/animations/section-divider.svg" width="100%" />
