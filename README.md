@@ -1,234 +1,183 @@
-# 🚀 IoT Dataset Generator & Smart Home Simulator
-
-A realistic **IoT data simulation engine** for smart home environments, built for **Data Engineering, IoT systems, and Machine Learning experimentation**.
-
----
-
-## 📸 Preview
-
-![Dashboard Preview](./assets/dashboard.gif)
-
+<p align="center">
+- Sensor latency detected
+- Temperature instability
 
 ---
 
-## 🌐 Live Demo
+### Live Activity & Operational Logs
 
-👉 **Try it here:**
-https://maulina2705.github.io/iot-dataset-generator/
+The dashboard continuously generates:
 
-[![Open Dashboard](https://img.shields.io/badge/Open-Dashboard-blue?style=for-the-badge)](https://maulina2705.github.io/iot-dataset-generator/)
+- Realtime activity updates
+- Operational events
+- Telemetry logs
+- Contextual notifications
 
----
-
-## 🧠 Project Overview
-
-This project simulates a **realistic smart home environment** with interconnected IoT devices and sensors.
-
-Unlike typical random data generators, this system models:
-
-* 🌡️ Environmental dynamics (temperature, humidity, light)
-* 🧍 Human behavior (occupancy, motion/PIR)
-* 🔌 Smart device automation (fan, lamp, charger)
-* ⚡ Energy consumption (device-level & total household power)
-
-All variables are **interdependent**, producing realistic time-series data.
+This creates a persistent operational atmosphere across the system.
 
 ---
 
-## 🔥 Key Features
+### Dataset Generator
 
-### 🎯 Realistic Simulation Engine
+Simulith includes an internal telemetry memory engine capable of:
 
-* Time-based behavior (day/night cycle)
-* Weather transitions (clear, cloudy, rain)
-* Occupancy-driven system logic
-* Sensor-to-device relationships
-
----
-
-### ⚡ Advanced Power Modeling
-
-* Smooth **ramp-up / ramp-down**
-* Realistic **power fluctuation**
-* Noise & micro spikes
-* Dynamic load behavior (non-linear)
+- JSON export
+- CSV export
+- Historical telemetry storage
+- Realtime dataset generation
 
 ---
 
-### 📊 Interactive Dashboard
+### Adaptive UI System
 
-* Real-time streaming simulation
-* Multi-panel visualization:
+Includes:
 
-  * 🌡 Environment
-  * 🧍 Occupancy
-  * 🔌 Device Status
-  * ⚡ Power
-
----
-
-### ⏱️ Multi-Resolution Data
-
-* Base resolution: **per second**
-* Aggregated views:
-
-  * per minute
-  * per hour
+- Dark / light theme switching
+- Realtime visual feedback
+- Responsive dashboard layout
+- Glow-based operational UI styling
 
 ---
 
-### 📦 Dataset Generation
+### Upcoming Features
 
-* Custom row generation (up to thousands of records)
-* Export to CSV
-* Ready for:
+The following systems are planned for future updates:
 
-  * Machine Learning
-  * Data pipelines
-  * Anomaly detection
-
----
-
-## 📊 Example Data Schema
-
-```json
-{
-  "timestamp": "...",
-  "temperature": 27.4,
-  "humidity": 75.2,
-  "light": 32,
-  "light_out": 60,
-  "pir": 1,
-  "occupancy": 3,
-  "fan_status": 1,
-  "lamp_status": 1,
-  "charger_status": 0,
-  "fan_power": 72.3,
-  "lamp_power": 10.8,
-  "charger_power": 0,
-  "total_power": 280.5
-}
-```
+- Predictive Analytics
+- AI Forecast Engine
+- MQTT Integration
+- Historical Analytics Pipeline
+- Smart Correlation Engine
+- Advanced Mobile Optimization
+- Modular Frontend Architecture
 
 ---
 
-## ⚙️ System Architecture
+## How Simulith Works
 
 ```text
-Simulation Engine (per second)
+Simulation Preset
         ↓
-Aggregation Layer (minute/hour)
+Realtime Telemetry Engine
         ↓
-Visualization (Chart.js)
+Contextual System Update
         ↓
-Export (CSV)
+Logs / Activity / Toasts
+        ↓
+Anomaly Detection
+        ↓
+Dataset Memory Engine
+        ↓
+Export Pipeline
 ```
 
 ---
 
-## 🧩 Data Relationships
+## Technical Architecture
 
-* Temperature ↑ → Fan ON → Power ↑
-* Low Light + Occupancy → Lamp ON
-* Occupancy ↑ → Heat ↑ → Fan Trigger
-* Charger usage follows daily human behavior
-* Total Power = Room Power + Household baseline + noise
+### Current Stack
 
----
-
-## 🛠️ Tech Stack
-
-* HTML, CSS, JavaScript (Vanilla)
-* Chart.js (Visualization)
-* GitHub Pages (Deployment)
+| Layer | Technology |
+|---|---|
+| Frontend | HTML5, CSS3, JavaScript |
+| Visualization | Chart.js |
+| State Logic | Realtime Simulation Loop |
+| UI System | Adaptive Dark / Light Theme |
+| Dataset System | In-memory Telemetry Storage |
+| Export System | CSV / JSON Generation |
 
 ---
 
-## 🚀 Getting Started
+### Architecture Diagram
 
-### 1. Clone repository
+<p align="center">
+  <img src="./assets/architecture/system-architecture.png" width="100%" alt="Architecture Diagram" />
+</p>
+
+---
+
+## UI / UX Philosophy
+
+Simulith was designed around one primary principle:
+
+> A monitoring dashboard should feel alive.
+
+Instead of presenting isolated cards and charts, the system attempts to simulate operational continuity through:
+
+- synchronized behavioral systems
+- contextual telemetry reactions
+- realtime operational feedback
+- adaptive visualization
+- persistent activity flow
+
+The objective is to create a dashboard experience that feels immersive rather than static.
+
+---
+
+## Project Structure
 
 ```bash
-git clone https://maulina2705.github.io/iot-dataset-generator.git
+simulith/
+│
+├── docs/
+│   ├── index-v2.html
+│   ├── style-v2.css
+│   └── script-v2.js
+│
+├── assets/
+│   ├── banner/
+│   ├── previews/
+│   └── architecture/
+│
+└── README.md
 ```
 
-### 2. Open project
+---
+
+## Installation
 
 ```bash
-cd iot-dataset-generator/docs
+git clone https://github.com/your-username/simulith.git
+cd simulith
 ```
 
-### 3. Run locally
+Open:
 
-Open `index.html` in your browser
-
----
-
-## 🌐 Deployment (GitHub Pages)
-
-1. Go to **Settings → Pages**
-2. Source: `Deploy from branch`
-3. Branch: `main`
-4. Folder: `/docs`
-5. Save
+```bash
+docs/index-v2.html
+```
 
 ---
 
-## 🎯 Use Cases
+## Roadmap
 
-* 📊 Data Engineering Practice
-* 🤖 Machine Learning Dataset Generation
-* 🔍 Anomaly Detection Testing
-* 🏠 Smart Home Simulation
-* ⚡ Energy Consumption Analysis
-
----
-
-## 🧪 Future Improvements
-
-* 🔴 Anomaly Injection Engine
-* 📡 MQTT / API Streaming Simulation
-* 🧠 ML Model Integration (Auto anomaly detection)
-* 🗄️ Database Integration (Time-series storage)
+| Feature | Status |
+|---|---|
+| Realtime Telemetry Engine | Completed |
+| Contextual Simulation Presets | Completed |
+| Adaptive Theme System | Completed |
+| Dataset Memory Engine | Completed |
+| CSV / JSON Export | In Progress |
+| Predictive Analytics | Soon |
+| MQTT Integration | Soon |
+| Forecasting Engine | Soon |
+| Mobile Optimization | Soon |
+| Modular Architecture Refactor | Soon |
 
 ---
 
-## 💡 Why This Project Matters
+## License
 
-Most datasets are:
-
-* static
-* random
-* unrealistic
-
-This project focuses on:
-
-> **dynamic, interconnected, and behavior-driven IoT data simulation**
+MIT License
 
 ---
 
-## 👨‍💻 Author
+## Final Notes
 
-Built as a portfolio project for:
+Simulith is not intended to replicate a fully production-grade telemetry platform.
 
-* Data Engineering
-* IoT Systems
-* AI Integration
+Instead, it explores how simulated operational behavior, synchronized telemetry systems, and immersive UI feedback can create the illusion of a living monitoring ecosystem.
 
----
+The entire experience is simulated.
 
-## ⭐ Support
-
-If you find this project useful:
-
-* ⭐ Star this repository
-* 🍴 Fork it
-* 🚀 Build your own version
-
----
-
-## 📌 Final Note
-
-This is not just a dataset generator.
-
-> It is a **mini simulation engine for real-world IoT systems**
+That is the point.
