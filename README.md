@@ -231,11 +231,7 @@ The following systems are planned for future updates:
 ## System Flow Architecture
 
 <p align="center">
-  <img src="./assets/animations/system-flow.svg" width="100%" />
-</p>
-
-<p align="center">
-  <img src="./assets/animations/system-flow-2.svg" width="100%" />
+  <img src="./assets/animations/system-diagram.svg" width="100%" />
 </p>
 
 Simulith continuously synchronizes operational simulation, telemetry generation, contextual system reactions, and dataset processing through a unified realtime operational pipeline.
