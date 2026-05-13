@@ -52,6 +52,36 @@ The platform continuously simulates operational behavior including:
 
 without relying on physical hardware infrastructure.
 
+---
+
+## System Preview
+
+### Realtime Operational Dashboard
+
+<p align="center">
+  <img src="./assets/branding/dashboard.png" width="100%" alt="Simulith Dashboard Preview"/>
+</p>
+
+Simulith visualizes operational telemetry through a responsive realtime monitoring interface designed to simulate production-like monitoring behavior.
+
+The dashboard includes:
+
+* contextual telemetry visualization
+* realtime activity flow
+* anomaly monitoring
+* adaptive environment tracking
+* synchronized operational feedback
+
+---
+
+### Realtime Simulation Environment
+
+<p align="center">
+  <img src="./assets/branding/dashboard.gif" width="100%" alt="Realtime Dashboard Simulation"/>
+</p>
+
+The interface continuously reacts to simulation presets and contextual operational changes to create a monitoring experience that feels persistent and alive.
+
 ### Live Activity & Operational Logs
 
 The dashboard continuously generates:
