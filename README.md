@@ -3,14 +3,6 @@
 </p>
 
 <p align="center">
-  <img src="./assets/animations/telemetry-divider.svg" width="100%" />
-</p>
-
-<p align="center">
-  <img src="./assets/animations/system-status.svg" width="100%" />
-</p>
-
-<p align="center">
 
 <a href="https://maulina2705.github.io/simulith/">
   <img src="https://img.shields.io/badge/LAUNCH SYSTEM-00CFFF?style=for-the-badge">
@@ -20,6 +12,14 @@
   <img src="https://img.shields.io/badge/SOURCE-CODE-111827?style=for-the-badge">
 </a>
 
+</p>
+
+<p align="center">
+  <img src="./assets/animations/telemetry-divider.svg" width="100%" />
+</p>
+
+<p align="center">
+  <img src="./assets/animations/system-status.svg" width="100%" />
 </p>
 
 <p align="center">
