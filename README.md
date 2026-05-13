@@ -391,7 +391,8 @@ simulith/
 <p align="center">
   <img src="./assets/animations/section-divider.svg" width="100%" />
 </p>
-## Quick Initialization
+
+### Quick Initialization
 
 Clone the repository and launch the simulated operational environment.
 
