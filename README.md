@@ -11,6 +11,15 @@
 </p>
 
 <p align="center">
+
+<img src="https://img.shields.io/badge/Telemetry-ACTIVE-00CFFF?style=flat-square">
+<img src="https://img.shields.io/badge/Simulation-STABLE-0066FF?style=flat-square">
+<img src="https://img.shields.io/badge/Dataset-SYNCHRONIZED-7B61FF?style=flat-square">
+<img src="https://img.shields.io/badge/UI-LIVE-00E6C3?style=flat-square">
+
+</p>
+
+<p align="center">
   <img src="./assets/branding/simulith-banner.png" width="100%" alt="Simulith Banner"/>
 </p>
 
