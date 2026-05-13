@@ -207,15 +207,37 @@ The objective is to create a dashboard experience that feels immersive rather th
 
 ---
 
+## Design Philosophy
+
+Most monitoring dashboards visualize data.
+
+Simulith attempts to visualize behavior.
+
+Instead of creating a static monitoring interface, the system was designed to simulate how operational environments *feel* when telemetry systems continuously react, synchronize, and evolve in realtime.
+
+Every section of the dashboard was intentionally built to contribute to the illusion of a living operational ecosystem:
+
+- synchronized telemetry movement
+- contextual anomaly reactions
+- persistent activity generation
+- adaptive environmental changes
+- operational continuity
+
+The objective is not hardware accuracy.
+
+The objective is operational immersion.
+
+---
+
 ## Project Structure
 
 ```bash
 simulith/
 │
 ├── docs/
-│   ├── index-v2.html
-│   ├── style-v2.css
-│   └── script-v2.js
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
 │
 ├── assets/
 │   ├── banner/
