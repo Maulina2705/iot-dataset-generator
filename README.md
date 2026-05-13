@@ -65,6 +65,10 @@ Responsive operational UI with realtime visual synchronization and adaptive them
 </table>
 
 <p align="center">
+  <img src="./assets/animations/telemetry-divider.svg" width="100%" />
+</p>
+
+<p align="center">
 Designed to mimic a living telemetry ecosystem —<br>
 without relying on real hardware.
 </p>
