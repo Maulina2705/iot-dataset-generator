@@ -391,11 +391,12 @@ simulith/
 <p align="center">
   <img src="./assets/animations/section-divider.svg" width="100%" />
 </p>
-
 ## Quick Initialization
 
+Clone the repository and launch the simulated operational environment.
+
 ```bash
-git clone https://github.com/your-username/simulith.git
+git clone https://github.com/maulina2705/simulith.git
 
 cd simulith
 ```
@@ -404,12 +405,15 @@ cd simulith
   <img src="./assets/animations/boot-sequence.svg" width="100%" />
 </p>
 
-Start Interface
+### Launch Interface
 
-```docs/index.html
+```bash
+docs/index.html
+```
+
+Simulith runs entirely inside a synthetic realtime telemetry environment designed for operational visualization and behavioral simulation.
 
 > Designed for experimentation, visualization, and operational immersion.
-```
 
 <p align="center">
   <img src="./assets/animations/section-divider.svg" width="100%" />
