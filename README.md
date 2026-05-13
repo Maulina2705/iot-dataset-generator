@@ -82,6 +82,21 @@ The dashboard includes:
 
 The interface continuously reacts to simulation presets and contextual operational changes to create a monitoring experience that feels persistent and alive.
 
+---
+
+## Core Systems
+
+| System                        | Description                                                             |
+| ----------------------------- | ----------------------------------------------------------------------- |
+| Realtime Telemetry Engine     | Simulates persistent operational telemetry streams across the dashboard |
+| Contextual Simulation Presets | Dynamically changes system behavior based on operational scenarios      |
+| Live Operational Logs         | Generates synchronized realtime activity and telemetry events           |
+| Dataset Generator             | Produces exportable operational datasets in JSON and CSV formats        |
+| Adaptive UI Engine            | Supports responsive dark/light operational visualization                |
+| Anomaly Detection System      | Simulates operational inconsistencies and environmental alerts          |
+| Smart Environment Monitoring  | Simulates temperature, humidity, occupancy, and air quality behavior    |
+| Visualization Layer           | Provides realtime chart synchronization and telemetry rendering         |
+
 ### Live Activity & Operational Logs
 
 The dashboard continuously generates:
