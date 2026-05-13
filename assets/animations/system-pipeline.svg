@@ -46,34 +46,6 @@
   letter-spacing: 1px;
 }
 
-.telemetry {
-  fill: #7B61FF;
-  filter: drop-shadow(0 0 16px #7B61FF);
-  animation: telemetryMove 6s linear infinite;
-}
-
-@keyframes telemetryMove {
-
-  0% {
-    transform: translateX(0px);
-    opacity: 0;
-  }
-
-  10% {
-    opacity: 1;
-  }
-
-  90% {
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateX(1080px);
-    opacity: 0;
-  }
-
-} 
-
 @keyframes flow {
   from {
     stroke-dashoffset: 24;
@@ -134,6 +106,21 @@
 <text x="1235" y="120" class="title">Export Pipeline</text>
 <text x="1215" y="145" class="subtitle">JSON / CSV generation</text>
 
-<circle cx="170" cy="210" r="9" class="telemetry"/>
+<circle r="9" fill="#7B61FF" filter="url(#glow)">
+  <animateMotion
+    dur="6s"
+    repeatCount="indefinite"
+    path="M170 210 L1250 210" />
+</circle>
+
+<defs>
+  <filter id="glow">
+    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+    <feMerge>
+      <feMergeNode in="coloredBlur"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+</defs>
 
 </svg>
