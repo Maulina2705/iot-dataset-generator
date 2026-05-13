@@ -278,9 +278,9 @@ simulith/
 │   └── script.js
 │
 ├── assets/
-│   ├── banner/
-│   ├── previews/
-│   └── architecture/
+│   ├── animations/
+│   ├── branding/
+│   └── branding/
 │
 └── README.md
 ```
@@ -299,7 +299,7 @@ cd simulith
 Open:
 
 ```bash
-docs/index-v2.html
+docs/index.html
 ```
 
 <p align="center">
