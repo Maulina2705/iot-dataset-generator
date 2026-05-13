@@ -184,7 +184,7 @@ Export Pipeline
 ### Architecture Diagram
 
 <p align="center">
-  <img src="./assets/architecture/system-architecture.png" width="100%" alt="Architecture Diagram" />
+  <img src="./assets/branding/system-architecture.png" width="100%" alt="Architecture Diagram" />
 </p>
 
 ---
