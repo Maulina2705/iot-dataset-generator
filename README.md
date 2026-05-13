@@ -1,5 +1,12 @@
 ---
 
+```bash
+Initializing realtime telemetry engine...
+Loading contextual simulation modules...
+Synchronizing operational environment...
+Simulation ready.
+```
+
 <p align="center">
   <img src="./assets/branding/simulith-banner.png" width="100%" alt="Simulith Banner"/>
 </p>
