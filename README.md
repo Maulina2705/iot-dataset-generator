@@ -52,6 +52,51 @@ The platform continuously simulates operational behavior including:
 
 without relying on physical hardware infrastructure.
 
+---
+
+## System Preview
+
+### Realtime Operational Dashboard
+
+<p align="center">
+  <img src="./assets/branding/dashboard.png" width="100%" alt="Simulith Dashboard Preview"/>
+</p>
+
+Simulith visualizes operational telemetry through a responsive realtime monitoring interface designed to simulate production-like monitoring behavior.
+
+The dashboard includes:
+
+* contextual telemetry visualization
+* realtime activity flow
+* anomaly monitoring
+* adaptive environment tracking
+* synchronized operational feedback
+
+---
+
+### Realtime Simulation Environment
+
+<p align="center">
+  <img src="./assets/branding/dashboard.gif" width="100%" alt="Realtime Dashboard Simulation"/>
+</p>
+
+The interface continuously reacts to simulation presets and contextual operational changes to create a monitoring experience that feels persistent and alive.
+
+---
+
+## Core Systems
+
+| System                        | Description                                                             |
+| ----------------------------- | ----------------------------------------------------------------------- |
+| Realtime Telemetry Engine     | Simulates persistent operational telemetry streams across the dashboard |
+| Contextual Simulation Presets | Dynamically changes system behavior based on operational scenarios      |
+| Live Operational Logs         | Generates synchronized realtime activity and telemetry events           |
+| Dataset Generator             | Produces exportable operational datasets in JSON and CSV formats        |
+| Adaptive UI Engine            | Supports responsive dark/light operational visualization                |
+| Anomaly Detection System      | Simulates operational inconsistencies and environmental alerts          |
+| Smart Environment Monitoring  | Simulates temperature, humidity, occupancy, and air quality behavior    |
+| Visualization Layer           | Provides realtime chart synchronization and telemetry rendering         |
+
 ### Live Activity & Operational Logs
 
 The dashboard continuously generates:
@@ -139,7 +184,7 @@ Export Pipeline
 ### Architecture Diagram
 
 <p align="center">
-  <img src="./assets/architecture/system-architecture.png" width="100%" alt="Architecture Diagram" />
+  <img src="./assets/branding/system-architecture.png" width="100%" alt="Architecture Diagram" />
 </p>
 
 ---
@@ -162,15 +207,37 @@ The objective is to create a dashboard experience that feels immersive rather th
 
 ---
 
+## Design Philosophy
+
+Most monitoring dashboards visualize data.
+
+Simulith attempts to visualize behavior.
+
+Instead of creating a static monitoring interface, the system was designed to simulate how operational environments *feel* when telemetry systems continuously react, synchronize, and evolve in realtime.
+
+Every section of the dashboard was intentionally built to contribute to the illusion of a living operational ecosystem:
+
+- synchronized telemetry movement
+- contextual anomaly reactions
+- persistent activity generation
+- adaptive environmental changes
+- operational continuity
+
+The objective is not hardware accuracy.
+
+The objective is operational immersion.
+
+---
+
 ## Project Structure
 
 ```bash
 simulith/
 │
 ├── docs/
-│   ├── index-v2.html
-│   ├── style-v2.css
-│   └── script-v2.js
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
 │
 ├── assets/
 │   ├── banner/
