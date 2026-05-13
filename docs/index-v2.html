@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script
+        src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>IoT Dashboard V2</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style-v2.css">
+
+    <!-- ICON -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <!-- CHART -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- JS -->
+    <script src="script-v2.js" defer></script>
+</head>
+
+<body>
+
+    <!-- ========================= -->
+    <!-- LOADING SCREEN -->
+    <!-- ========================= -->
+
+    <div class="loading-screen" id="loadingScreen">
+
+        <div class="loading-content">
+
+            <div class="loading-logo">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+
+            <h2>
+                Initializing Realtime Engine
+            </h2>
+
+            <p id="loadingText">
+                Connecting MQTT Broker...
+            </p>
+
+            <div class="loading-bar">
+
+                <div class="loading-progress" id="loadingProgress">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- APP LAYOUT -->
+    <!-- ========================= -->
+    <div class="app-layout">
+
+        <!-- ========================= -->
+        <!-- SIDEBAR -->
+        <!-- ========================= -->
+        <aside class="sidebar">
+
+            <div class="sidebar-logo">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+
+            <nav class="sidebar-menu">
+
+                <button class="nav-item active" data-target="overviewSection">
+                    <i class="fa-solid fa-house"></i>
+                </button>
+
+                <button class="nav-item" data-target="analyticsSection">
+                    <i class="fa-solid fa-chart-line"></i>
+                </button>
+
+                <button class="nav-item" data-target="environmentSection">
+                    <i class="fa-solid fa-microchip"></i>
+                </button>
+
+                <button class="nav-item" data-target="datasetSection">
+                    <i class="fa-solid fa-database"></i>
+                </button>
+
+                <button class="nav-item" data-target="aiSection">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
+
+            </nav>
+
+        </aside>
+
+        <!-- ========================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ========================= -->
+        <main class="main-content">
+
+            <!-- ========================= -->
+            <!-- TOP HEADER -->
+            <!-- ========================= -->
+            <header class="top-header">
+
+                <div class="header-left">
+                    <h1>Overview</h1>
+                    <p>Realtime smart environment monitoring & simulation</p>
+                </div>
+
+                <div class="header-right">
+
+                    <button class="theme-toggle" id="themeToggle"><i class="fa-solid fa-moon"></i></button>
+                    <div class="header-status">
+
+                        <span>24°C</span>
+                    </div>
+
+                    <div class="header-status">
+                        <span>Good</span>
+                    </div>
+
+                    <div class="header-status">
+                        <span id="liveClock">09:42</span>
+                    </div>
+
+                    <div class="header-status live-status">
+
+                        <div class="status-dot"></div>
+
+                        <span id="connectionStatus">MQTT Connected</span>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+            <!-- ========================= -->
+            <!-- HERO METRICS -->
+            <!-- ========================= -->
+            <section class="hero-metrics" id="overviewSection">
+
+                <div class="metric-card">
+                    <h3>Total Power</h3>
+                    <h2 id="powerValue" class="counter" data-target="2.45" data-suffix=" kW">
+                        0
+                    </h2>
+                    <p>Live</p>
+
+                    <canvas class="mini-chart" id="powerMiniChart">
+                    </canvas>
+                </div>
+
+                <div class="metric-card">
+                    <h3>Active Devices</h3>
+                    <h2 id="deviceValue" class="counter" data-target="24">
+                        0
+                    </h2>
+                    <p>Active</p>
+
+                    <canvas class="mini-chart" id="deviceMiniChart">
+                    </canvas>
+                </div>
+
+                <div class="metric-card">
+                    <h3>Occupancy</h3>
+                    <h2 id="occupancyValue" class="counter" data-target="6" data-suffix=" People">
+                        0
+                    </h2>
+                    <p>+12.5%</p>
+
+                    <canvas class="mini-chart" id="occupancyMiniChart">
+                    </canvas>
+                </div>
+
+                <div class="metric-card">
+                    <h3>System Health</h3>
+                    <h2>Healthy</h2>
+                    <p>MQTT Connected</p>
+                </div>
+
+            </section>
+
+            <!-- ========================= -->
+            <!-- MAIN ANALYTICS -->
+            <!-- ========================= -->
+            <section class="main-analytics" id="analyticsSection">
+
+                <!-- MAIN CHART -->
+                <div class="analytics-card large-card">
+
+                    <div class="card-header">
+
+                        <h3>Power vs Occupancy</h3>
+
+                        <div class="chart-filters">
+
+                            <button class="filter-btn active">
+                                24H
+                            </button>
+
+                            <button class="filter-btn">
+                                7D
+                            </button>
+
+                            <button class="filter-btn">
+                                30D
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <canvas id="mainChart"></canvas>
+
+                </div>
+
+                <!-- DEVICE STATUS -->
+                <div class="analytics-card">
+
+                    <div class="card-header">
+                        <h3>Device Status</h3>
+                    </div>
+
+                    <div class="device-grid">
+
+                        <div class="device-item active" id="fanDevice">
+
+                            <div class="device-left">
+
+                                <div class="device-dot"></div>
+
+                                <span>Fan</span>
+
+                            </div>
+
+                            <div>
+                                <strong id="fanPower">72W</strong>
+                                <small id="fanStatus">ACTIVE</small>
+                            </div>
+
+                        </div>
+
+                        <div class="device-item active" id="lampDevice">
+
+                            <div class="device-left">
+
+                                <div class="device-dot"></div>
+
+                                <span>Lamp</span>
+
+                            </div>
+
+                            <div>
+                                <strong id="lampPower">72W</strong>
+                                <small id="lampStatus">ACTIVE</small>
+                            </div>
+
+                        </div>
+
+                        <div class="device-item active" id="chargerDevice">
+
+                            <div class="device-left">
+
+                                <div class="device-dot"></div>
+
+                                <span>Charger</span>
+
+                            </div>
+
+                            <div>
+                                <strong id="chargerPower">65W</strong>
+                                <small id="chargerStatus">ACTIVE</small>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ========================= -->
+            <!-- ENVIRONMENT OVERVIEW -->
+            <!-- ========================= -->
+
+            <section class="environment-section" id="environmentSection">
+
+                <!-- TEMP -->
+                <div class="env-card">
+
+                    <div class="env-icon">
+                        <i class="fa-solid fa-temperature-half"></i>
+                    </div>
+
+                    <div class="env-info">
+                        <span>Temperature</span>
+                        <h3 id="tempValue">26.8°C</h3>
+                        <p id="tempStatus">Normal</p>
+                    </div>
+
+                </div>
+
+                <!-- HUMIDITY -->
+                <div class="env-card">
+
+                    <div class="env-icon">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+
+                    <div class="env-info">
+                        <span>Humidity</span>
+                        <h3 id="humidityValue">58%</h3>
+                        <p id="humidityStatus">Stable</p>
+                    </div>
+
+                </div>
+
+                <!-- AQI -->
+                <div class="env-card">
+
+                    <div class="env-icon">
+                        <i class="fa-solid fa-wind"></i>
+                    </div>
+
+                    <div class="env-info">
+                        <span>Air Quality</span>
+                        <h3 id="aqiValue">82 AQI</h3>
+                        <p id="aqiStatus">Good</p>
+                    </div>
+
+                </div>
+
+                <!-- CO2 -->
+                <div class="env-card">
+
+                    <div class="env-icon">
+                        <i class="fa-solid fa-cloud"></i>
+                    </div>
+
+                    <div class="env-info">
+                        <span>CO₂ Level</span>
+                        <h3 id="co2Value">620 ppm</h3>
+                        <p id="co2Status">Normal</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ========================= -->
+            <!-- AI INSIGHT -->
+            <!-- ========================= -->
+
+            <section class="ai-section" id="aiSection">
+
+                <div class="ai-card">
+
+                    <div class="card-header">
+
+                        <h3>AI Insight</h3>
+
+                        <span class="ai-badge">
+                            LIVE
+                        </span>
+
+                    </div>
+
+                    <div class="ai-content">
+
+                        <h2 id="aiTitle">
+                            Monitoring stable
+                        </h2>
+
+                        <p id="aiDescription">
+
+                            Environment conditions are
+                            currently operating within
+                            optimal threshold.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ========================= -->
+            <!-- ANOMALY PANEL -->
+            <!-- ========================= -->
+
+            <section class="anomaly-section" id="anomalySection">
+
+                <div class="anomaly-card">
+
+                    <div class="card-header">
+
+                        <h3>Anomaly Detection</h3>
+
+                        <span class="anomaly-live">
+                            LIVE
+                        </span>
+
+                    </div>
+
+                    <div class="anomaly-list" id="anomalyList">
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ========================= -->
+            <!-- ACTIVITY FEED -->
+            <!-- ========================= -->
+            <section class="activity-feed" id="activitySection">
+
+                <div class="feed-card">
+
+                    <div class="card-header">
+                        <h3>Live Activity</h3>
+                    </div>
+
+                    <div class="feed-list" id="activityList">
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ========================= -->
+            <!-- LIVE SYSTEM LOGS -->
+            <!-- ========================= -->
+
+            <section class="logs-section">
+
+                <div class="logs-card">
+
+                    <div class="card-header">
+
+                        <h3>System Logs</h3>
+
+                        <span class="anomaly-live">
+                            LIVE
+                        </span>
+
+                    </div>
+
+                    <div class="logs-container" id="logsContainer">
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ========================= -->
+            <!-- DATASET TOOLS -->
+            <!-- ========================= -->
+            <section class="dataset-tools" id="datasetSection">
+
+                <div class="tools-card">
+
+                    <div class="card-header">
+                        <h3>Dataset Generator</h3>
+                    </div>
+
+                    <div class="dataset-controls">
+
+                        <!-- PRESET -->
+                        <div class="control-group">
+
+                            <label>
+                                Simulation Preset
+                            </label>
+
+                            <select id="presetSelect">
+
+                                <option>
+                                    Normal Day
+                                </option>
+
+                                <option>
+                                    High Occupancy
+                                </option>
+
+                                <option>
+                                    Energy Saving
+                                </option>
+
+                                <option>
+                                    Power Spike
+                                </option>
+
+                                <option>
+                                    Rainy Environment
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <!-- DURATION -->
+                        <div class="control-group">
+
+                            <label>
+                                Dataset Duration
+                            </label>
+
+                            <select id="durationSelect">
+
+                                <option>
+                                    Last 24 Hours
+                                </option>
+
+                                <option>
+                                    Last 7 Days
+                                </option>
+
+                                <option>
+                                    Last 30 Days
+                                </option>
+
+                                <option>
+                                    Last 1 Year
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <!-- SPEED -->
+                        <div class="control-group">
+
+                            <label>
+                                Simulation Speed
+                            </label>
+
+                            <input type="range" min="1" max="3" value="2" id="speedRange">
+
+                        </div>
+
+                    </div>
+
+                    <div class="dataset-actions">
+
+                        <button class="dataset-btn" id="exportCsvBtn">
+                            Export CSV
+                        </button>
+
+                        <button class="dataset-btn secondary" id="exportJsonBtn">
+                            Export JSON
+                        </button>
+
+                    </div>
+
+                    <div class="dataset-status">
+
+                        <div class="status-indicator"></div>
+
+                        <span id="datasetStatus">
+                            Simulation Ready
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ========================= -->
+            <!-- TOAST NOTIFICATION -->
+            <!-- ========================= -->
+
+            <div id="toastContainer"></div>
+
+        </main>
+
+    </div>
+
+    <script src="script-v2.js"></script>
+
+</body>
+
+</html>
