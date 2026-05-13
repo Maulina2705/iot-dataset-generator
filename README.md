@@ -383,7 +383,6 @@ simulith/
 │
 ├── assets/
 │   ├── animations/
-│   ├── branding/
 │   └── branding/
 │
 └── README.md
@@ -393,16 +392,19 @@ simulith/
   <img src="./assets/animations/section-divider.svg" width="100%" />
 </p>
 
-## Installation
+## Quick Initialization
 
 ```bash
 git clone https://github.com/your-username/simulith.git
+
 cd simulith
-```
 
-Open:
+Initializing operational environment...
+Synchronizing telemetry modules...
+Launching realtime simulation engine...
 
-```bash
+Start Interface
+
 docs/index.html
 ```
 
