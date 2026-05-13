@@ -11,13 +11,11 @@
   stroke-width: 4;
   stroke-linecap: round;
   stroke-dasharray: 12;
-  animation: flow 4s linear infinite;
 }
 
 .node {
   fill: #0B1220;
   stroke-width: 5;
-  filter: drop-shadow(0 0 14px rgba(0,207,255,0.35));
 }
 
 .node-blue {
@@ -53,37 +51,6 @@
 
 .pulse {
   fill: #00CFFF;
-  filter: drop-shadow(0 0 10px #00CFFF);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes flow {
-  from {
-    stroke-dashoffset: 48;
-  }
-
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes pulse {
-
-  0% {
-    opacity: 0.4;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1.25);
-  }
-
-  100% {
-    opacity: 0.4;
-    transform: scale(1);
-  }
-
 }
 
 </style>
