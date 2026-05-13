@@ -19,10 +19,6 @@
 
 </p>
 
-<p align="center">
-  <img src="./assets/branding/simulith-banner.png" width="100%" alt="Simulith Banner"/>
-</p>
-
 ## Core Capabilities
 
 <table>
@@ -62,6 +58,14 @@ Responsive operational UI with realtime visual synchronization and adaptive them
 
 </tr>
 </table>
+
+<p align="center">
+  <img src="./assets/animations/telemetry-divider.svg" width="100%" />
+</p>
+
+<p align="center">
+  <img src="./assets/branding/simulith-banner.png" width="100%" alt="Simulith Banner"/>
+</p>
 
 <p align="center">
 Designed to mimic a living telemetry ecosystem —<br>
