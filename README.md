@@ -12,6 +12,18 @@
 
 <p align="center">
 
+<a href="https://maulina2705.github.io/simulith/">
+  <img src="https://img.shields.io/badge/LAUNCH SYSTEM-00CFFF?style=for-the-badge">
+</a>
+
+<a href="https://github.com/Maulina2705/simulith">
+  <img src="https://img.shields.io/badge/SOURCE-CODE-111827?style=for-the-badge">
+</a>
+
+</p>
+
+<p align="center">
+
 <img src="https://img.shields.io/badge/Telemetry-ACTIVE-00CFFF?style=flat-square">
 <img src="https://img.shields.io/badge/Simulation-STABLE-0066FF?style=flat-square">
 <img src="https://img.shields.io/badge/Dataset-SYNCHRONIZED-7B61FF?style=flat-square">
