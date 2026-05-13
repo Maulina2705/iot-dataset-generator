@@ -1,9 +1,6 @@
-```bash
-Initializing realtime telemetry engine...
-Loading contextual simulation modules...
-Synchronizing operational environment...
-Simulation ready.
-```
+<p align="center">
+  <img src="./assets/animations/boot-sequence.svg" width="100%" />
+</p>
 
 ---
 
