@@ -400,9 +400,9 @@ git clone https://github.com/your-username/simulith.git
 cd simulith
 ```
 
-Initializing operational environment...
-Synchronizing telemetry modules...
-Launching realtime simulation engine...
+<p align="center">
+  <img src="./assets/animations/boot-sequence.svg" width="100%" />
+</p>
 
 Start Interface
 
