@@ -2399,7 +2399,7 @@ exportJsonBtn.addEventListener(
 );
 
 /* ========================= */
-/* LOADING SCREEN */
+/* LOADING SCREEN - OK */
 /* ========================= */
 
 const loadingScreen =
